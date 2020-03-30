@@ -16,6 +16,7 @@ pygame.mixer.pre_init(channels=2)
 pygame.mixer.music.load('Mario song-stišan.mp3')
 pygame.mixer.music.play(loops=-1)
 fireball=pygame.mixer.Sound('fireball stišan.wav')
+jump=pygame.mixer.Sound('Mario Jump.wav')
 
 font = pygame.font.SysFont('Comis Sans MS', 32)
 
@@ -234,6 +235,8 @@ while run:
 
     if tipka[pygame.K_m]:
         pygame.mixer.music.pause()
+    #if tipka[pygame.K_p]:
+        
         
     if tipka[pygame.K_a] and Mario.x>Mario.vel:
         Mario.x-=Mario.vel
@@ -272,6 +275,7 @@ while run:
             Mario.lijevo=False
             Mario.brojač_hoda=0
             Mario.brojač_skoka=16
+            jump.play()
 
     else:
         if Mario.brojač_skoka>=-16:
