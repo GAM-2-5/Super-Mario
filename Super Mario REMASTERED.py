@@ -1,9 +1,8 @@
 import pygame
 import videoplayer
-#pygame.time.delay(5747)
+
 pygame.init()
 pygame.font.init()
-
 
 win=pygame.display.set_mode((960,540),pygame.RESIZABLE)#dimenzije prozora
 zaslon_dužina=960
