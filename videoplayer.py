@@ -6,7 +6,7 @@ pg.mixer.music.load('dr stone op.mp3')
 pg.mixer.music.play()
 win=pg.display.set_mode((960,540),pg.RESIZABLE)
 # Create a VideoCapture object and read from input file
-cap = cv2.VideoCapture('Super Mario REMASTERED Opening.mp4')
+cap = cv2.VideoCapture('Super Mario Opening.mp4')
 if (cap.isOpened()== False): 
   print("Error opening video stream or file")
 # Read until video is completed
