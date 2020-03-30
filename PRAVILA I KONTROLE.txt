@@ -14,3 +14,5 @@ S - poništavanje skoka
 SPACE - pucanje vatrenih lopti
 M - isključivanje glazbe
 ESC - izađi iz igre  
+
+Uživajte u igranju! 😀
