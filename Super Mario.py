@@ -96,11 +96,11 @@ class gljiva(object):
             if event.type==TIMER_EVENT1:
                 neprijatelj.vel+=10
             if event.type==TIMER_EVENT2:
-                neprijatelj.vel+=10
+                neprijatelj.vel+=15
             if event.type==TIMER_EVENT3:
-                neprijatelj.vel+=10
+                neprijatelj.vel+=15
             if event.type==TIMER_EVENT4:
-                neprijatelj.vel+=10
+                neprijatelj.vel+=15
         if self.vel>0:
             if self.x+self.vel<self.put[1]:
                 self.x+=self.vel
