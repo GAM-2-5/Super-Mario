@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import pygame as pg
 pg.mixer.init()
-pg.mixer.music.load('dr stone op.mp3')
+pg.mixer.music.load('Opening.mp3')
 pg.mixer.music.play()
 win=pg.display.set_mode((960,540),pg.RESIZABLE)
 # Create a VideoCapture object and read from input file
