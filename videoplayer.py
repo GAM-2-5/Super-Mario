@@ -4,7 +4,7 @@ import pygame as pg
 pg.mixer.init()
 pg.mixer.music.load('Opening.mp3')
 pg.mixer.music.play()
-win=pg.display.set_mode((960,540),pg.RESIZABLE)
+win=pg.display.set_mode((1920,1080),pg.RESIZABLE)
 # Create a VideoCapture object and read from input file
 cap = cv2.VideoCapture('Super Mario Opening.mp4')
 if (cap.isOpened()== False): 
@@ -15,7 +15,7 @@ while(cap.isOpened()):
   ret, frame = cap.read()
   if ret == True:
     # Display the resulting frame
-    cv2.imshow('Frame',frame)
+    cv2.imshow('Super Mario Opening',frame)
     # Press Q on keyboard to  exit
 
     if cv2.waitKey(25) & 0xFF == ord('q'):
