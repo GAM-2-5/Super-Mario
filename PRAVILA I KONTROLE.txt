@@ -9,4 +9,5 @@ A - lijevo
 D - desno
 S - poništavanje skoka
 SPACE - pucanje vatrenih lopti
-M - isključivanje glazbe  
+M - isključivanje glazbe
+ESC - izađi iz igre  
