@@ -11,7 +11,6 @@ vrijeme=pygame.time.get_ticks()
 a=pygame.image.load('mario img2.png')  #ikona
 pygame.display.set_icon(a)
 pygame.display.set_caption('Super Mario')
-brojilo=0
 
 pygame.mixer.init()
 pygame.mixer.pre_init(channels=2)
@@ -73,7 +72,7 @@ class gljiva(object):
         self.height=height
         self.put=[x,kraj]
         self.brojač_hoda=0
-        self.vel=3 
+        self.vel=3
         self.hitbox=(self.x-5,self.y,55,45)
 
     def crtaj(self,win):
@@ -95,13 +94,13 @@ class gljiva(object):
             if event.type==TIMER_EVENT:
                 neprijatelj.vel+=5
             if event.type==TIMER_EVENT1:
-                neprijatelj.vel-=10
+                neprijatelj.vel+=10
             if event.type==TIMER_EVENT2:
-                neprijatelj.vel-=15
+                neprijatelj.vel+=10
             if event.type==TIMER_EVENT3:
-                neprijatelj.vel-=15
+                neprijatelj.vel+=10
             if event.type==TIMER_EVENT4:
-                neprijatelj.vel-=15
+                neprijatelj.vel+=10
         if self.vel>0:
             if self.x+self.vel<self.put[1]:
                 self.x+=self.vel
@@ -124,7 +123,7 @@ class igrač(object):
         self.y=y
         self.width=width
         self.height=height
-        self.vel=4
+        self.vel=5
         self.skok=False
         self.brojač_skoka=16
         self.lijevo=False
@@ -155,15 +154,15 @@ class igrač(object):
     def hit(self):    
         pygame.mixer.music.load('game over.mp3')
         pygame.mixer.music.play()
-        if brojač_pogodaka<=15:
+        if brojač_pogodaka<=25:
             print('Ukupan broj pogodaka: {} ... Jadno!' .format(brojač_pogodaka))
-        if brojač_pogodaka>15 and brojač_pogodaka<=20:
+        if brojač_pogodaka>25 and brojač_pogodaka<=30:
             print('Ukupan broj pogodaka: {} ... Meh!' .format(brojač_pogodaka))
-        if brojač_pogodaka>20 and brojač_pogodaka<=30:
-            print('Ukupan broj pogodaka: {} ... Nije loše!').format(brojač_pogodaka)
         if brojač_pogodaka>30 and brojač_pogodaka<=40:
+            print('Ukupan broj pogodaka: {} ... Nije loše!').format(brojač_pogodaka)
+        if brojač_pogodaka>40 and brojač_pogodaka<=50:
             print('Ukupan broj pogodaka: {} ... Opa!' .format(brojač_pogodaka))
-        if brojač_pogodaka>40:
+        if brojač_pogodaka>50:
             print('Ukupan broj pogodaka: {} ... To legendo!' .format(brojač_pogodaka))
         pygame.time.delay(3100)
         pygame.quit()
@@ -198,9 +197,10 @@ Mario=igrač(480,435,35,35)
 neprijatelj=gljiva(0,453,32,32,960-40)
 municija=[]
 shootLoop=1
-     # glavna petlja
+# glavna petlja
 while run:  
-      
+    clock.tick(60)   # FPS
+        
     if Mario.hitbox[1]<neprijatelj.hitbox[1]+neprijatelj.hitbox[3] and Mario.hitbox[1]+Mario.hitbox[3]>neprijatelj.hitbox[1]:
         if Mario.hitbox[0]+Mario.hitbox[2]>neprijatelj.hitbox[0] and Mario.hitbox[0]<neprijatelj.hitbox[0]+neprijatelj.hitbox[2]:
             Mario.hit()
@@ -229,7 +229,7 @@ while run:
         if event.type==TIMER_EVENT:
             neprijatelj.vel-=5
     if tipka[pygame.K_SPACE] and shootLoop==0: # pucanje
-        fireball.play()
+        
         if Mario.lijevo:
             smjer=-1
             bullet=pygame.image.load('bullet-lijevo.png')
@@ -237,6 +237,7 @@ while run:
             bullet=pygame.image.load('bullet-desno.png')
             smjer=1
         if len(municija)<1:
+            fireball.play()
             municija.append(projektil(round(Mario.x+Mario.width//2),round(Mario.y+Mario.height//2),6,(0,0,0),smjer))
 
     if tipka[pygame.K_m]:
@@ -308,6 +309,6 @@ while run:
     win.blit(text,(0,0))
     #pygame.display.update()
     pygame.display.flip()
-    clock.tick(60)   # FPS
-    brojilo+=1
+
+
 pygame.quit()
