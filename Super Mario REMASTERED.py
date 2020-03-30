@@ -1,6 +1,9 @@
 import pygame
+import videoplayer
+#pygame.time.delay(5747)
 pygame.init()
 pygame.font.init()
+
 
 win=pygame.display.set_mode((960,540),pygame.RESIZABLE)#dimenzije prozora
 zaslon_dužina=960
@@ -28,6 +31,8 @@ TIMER_EVENT2=pygame.USEREVENT+3
 pygame.time.set_timer(TIMER_EVENT2,31800)
 TIMER_EVENT3=pygame.USEREVENT+4
 pygame.time.set_timer(TIMER_EVENT3,42400)
+TIMER_EVENT4=pygame.USEREVENT+5
+pygame.time.set_timer(TIMER_EVENT4,53000)
 
 dužina_slike=50 # slike
 visina_slike=58
@@ -95,6 +100,8 @@ class gljiva(object):
             if event.type==TIMER_EVENT2:
                 neprijatelj.vel-=15
             if event.type==TIMER_EVENT3:
+                neprijatelj.vel-=20
+            if event.type==TIMER_EVENT4:
                 neprijatelj.vel-=20
         if self.vel>0:
             if self.x+self.vel<self.put[1]:
@@ -235,9 +242,7 @@ while run:
 
     if tipka[pygame.K_m]:
         pygame.mixer.music.pause()
-    #if tipka[pygame.K_p]:
-        
-        
+  
     if tipka[pygame.K_a] and Mario.x>Mario.vel:
         Mario.x-=Mario.vel
         Mario.lijevo=True
