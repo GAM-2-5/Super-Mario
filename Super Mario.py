@@ -22,15 +22,15 @@ jump=pygame.mixer.Sound('Mario Jump.wav')
 font = pygame.font.SysFont('Comis Sans MS', 32)
 
 TIMER_EVENT=pygame.USEREVENT+1
-pygame.time.set_timer(TIMER_EVENT,10600)
+pygame.time.set_timer(TIMER_EVENT,10500)
 TIMER_EVENT1=pygame.USEREVENT+2
-pygame.time.set_timer(TIMER_EVENT1,21200)
+pygame.time.set_timer(TIMER_EVENT1,21000)
 TIMER_EVENT2=pygame.USEREVENT+3
-pygame.time.set_timer(TIMER_EVENT2,31800)
+pygame.time.set_timer(TIMER_EVENT2,31500)
 TIMER_EVENT3=pygame.USEREVENT+4
-pygame.time.set_timer(TIMER_EVENT3,42400)
+pygame.time.set_timer(TIMER_EVENT3,42000)
 TIMER_EVENT4=pygame.USEREVENT+5
-pygame.time.set_timer(TIMER_EVENT4,53000)
+pygame.time.set_timer(TIMER_EVENT4,50500)
 
 dužina_slike=50 # slike
 visina_slike=58
@@ -96,11 +96,11 @@ class gljiva(object):
             if event.type==TIMER_EVENT1:
                 neprijatelj.vel+=10
             if event.type==TIMER_EVENT2:
-                neprijatelj.vel+=15
+                neprijatelj.vel+=16
             if event.type==TIMER_EVENT3:
-                neprijatelj.vel+=15
+                neprijatelj.vel+=20
             if event.type==TIMER_EVENT4:
-                neprijatelj.vel+=15
+                neprijatelj.vel+=20
         if self.vel>0:
             if self.x+self.vel<self.put[1]:
                 self.x+=self.vel
@@ -156,13 +156,13 @@ class igrač(object):
         pygame.mixer.music.play()
         if brojač_pogodaka<=25:
             print('Ukupan broj pogodaka: {} ... Jadno!' .format(brojač_pogodaka))
-        if brojač_pogodaka>25 and brojač_pogodaka<=30:
+        if brojač_pogodaka>25 and brojač_pogodaka<=35:
             print('Ukupan broj pogodaka: {} ... Meh!' .format(brojač_pogodaka))
-        if brojač_pogodaka>30 and brojač_pogodaka<=40:
+        if brojač_pogodaka>35 and brojač_pogodaka<=45:
             print('Ukupan broj pogodaka: {} ... Nije loše!').format(brojač_pogodaka)
-        if brojač_pogodaka>40 and brojač_pogodaka<=50:
+        if brojač_pogodaka>45 and brojač_pogodaka<=60:
             print('Ukupan broj pogodaka: {} ... Opa!' .format(brojač_pogodaka))
-        if brojač_pogodaka>50:
+        if brojač_pogodaka>60:
             print('Ukupan broj pogodaka: {} ... To legendo!' .format(brojač_pogodaka))
         pygame.time.delay(3100)
         pygame.quit()

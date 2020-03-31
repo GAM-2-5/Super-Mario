@@ -1,9 +1,6 @@
 PRAVILA IGRE
 
-Kao Super Mario, tvoj zadatak je da vatrenim loptama što više puta pogodiš gljivu, neprijatelja. 
-No ako te gljiva dotakne, igra završava. Kako igra prolazi, gljiva se kreće sve brže i brže. 
-Tvoj cilj je što više puta pogoditi gljivu bez da te ona dotakne.
-Kad igra završi, program će ispisati konačan broj pogodaka i svoje osobne mišljenje o tvom rezultatu.
+Kao Super Mario, tvoj zadatak je da vatrenim loptama što više puta pogodiš gljivu, neprijatelja. No ako te gljiva dotakne, igra završava. Kako igra prolazi, gljiva se kreće sve brže i brže. Tvoj cilj je što više puta pogoditi gljivu bez da te ona dotakne.
 
 KONTROLE
 
@@ -14,5 +11,3 @@ S - poništavanje skoka
 SPACE - pucanje vatrenih lopti
 M - isključivanje glazbe
 ESC - izađi iz igre  
-
-Uživajte u igranju! 😀
