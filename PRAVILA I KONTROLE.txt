@@ -11,3 +11,4 @@ S - poništavanje skoka
 SPACE - pucanje vatrenih lopti
 M - isključivanje glazbe
 ESC - izađi iz igre  
+Q - preskoči uvodnu špicu
