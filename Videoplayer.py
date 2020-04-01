@@ -1,14 +1,15 @@
 import cv2
 import numpy as np
 import pygame as pg
+pg.init()
 pg.mixer.init()
 pg.mixer.music.load('Resursi\Zvučni efekti\Opening.mp3')
-pg.mixer.music.play()
 win=pg.display.set_mode((1920,1080),pg.RESIZABLE)
 a=pg.image.load('Resursi\mario ikona.png')  #ikona
 pg.display.set_icon(a)
 cap = cv2.VideoCapture('Resursi\Super Mario Opening.mp4')
 pg.mixer.music.play()
+    
 if (cap.isOpened()== False): 
   print("Error opening video stream or file")
 
@@ -28,6 +29,7 @@ while(cap.isOpened()):
     break
 
 cap.release()
+cv2.destroyAllWindows()
 
 
 
