@@ -8,16 +8,16 @@ win=pygame.display.set_mode((960,540),pygame.RESIZABLE)#dimenzije prozora
 zaslon_dužina=960
 zaslon_visina=540
 vrijeme=pygame.time.get_ticks()
-a=pygame.image.load('mario img2.png')  #ikona
+a=pygame.image.load('Resursi\mario ikona.png')  #ikona
 pygame.display.set_icon(a)
 pygame.display.set_caption('Super Mario')
 
 pygame.mixer.init()
 pygame.mixer.pre_init(channels=2)
-pygame.mixer.music.load('Mario song-stišan.mp3')
+pygame.mixer.music.load('Resursi\Zvučni efekti\Mario song.mp3')
 pygame.mixer.music.play(loops=-1)
-fireball=pygame.mixer.Sound('fireball stišan.wav')
-jump=pygame.mixer.Sound('Mario Jump.wav')
+fireball=pygame.mixer.Sound('fireball.wav')
+jump=pygame.mixer.Sound('Resursi\Zvučni efekti\Mario Jump.wav')
 
 font = pygame.font.SysFont('Comis Sans MS', 32)
 
@@ -34,19 +34,19 @@ pygame.time.set_timer(TIMER_EVENT4,50500)
 
 dužina_slike=50 # slike
 visina_slike=58
-bullet=pygame.image.load('bullet.png')
+bullet=pygame.image.load('Resursi\Sprites\metak.png')
 bullet=pygame.transform.rotozoom(bullet,-90,1)
 
-desni_hod=[pygame.image.load('mario backbone1.png'),pygame.image.load('mario backbone2.png'),pygame.image.load('mario backbone3.png'),pygame.image.load('mario backbone4.png')] 
-lijevi_hod=[pygame.image.load('mario 1 obrnuti.png'),pygame.image.load('mario 2 obrnuti.png'),pygame.image.load('mario 3 obrnuti.png'),pygame.image.load('mario 4 obrnuti.png')]
-idle=pygame.image.load('mario backbone1.png')
+desni_hod=[pygame.image.load('Resursi\Sprites\mario 1.png'),pygame.image.load('Resursi\Sprites\mario 2.png'),pygame.image.load('Resursi\Sprites\mario 3.png'),pygame.image.load('Resursi\Sprites\mario 4.png')] 
+lijevi_hod=[pygame.image.load('Resursi\Sprites\mario 1 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 2 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 3 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 4 obrnuti.png')]
+idle=pygame.image.load('Resursi\Sprites\mario 1.png')
 
 for i in range (len(lijevi_hod)):
     lijevi_hod[i]=pygame.transform.scale(lijevi_hod[i],(dužina_slike,visina_slike))
     desni_hod[i]=pygame.transform.scale(desni_hod[i],(dužina_slike,visina_slike))
     idle=pygame.transform.scale(idle,(dužina_slike,visina_slike))
 
-pozadina=pygame.image.load('level duži.png')
+pozadina=pygame.image.load('Resursi\pozadina.png')
 move_x=0
 move_x2=298
 move_x3=420
@@ -61,7 +61,7 @@ run=True
 
 class gljiva(object):
     
-    gljiva_hod=[pygame.image.load('neprijatelj1.png'),pygame.image.load('neprijatelj2.png')]
+    gljiva_hod=[pygame.image.load('Resursi\Sprites\gljiva1.png'),pygame.image.load('Resursi\Sprites\gljiva2.png')]
     for i in range (len(gljiva_hod)):
         gljiva_hod[i]=pygame.transform.scale(gljiva_hod[i],(44,40))
         
@@ -152,7 +152,7 @@ class igrač(object):
         #pygame.draw.rect(win,(0,0,255),self.hitbox,2)
 
     def hit(self):    
-        pygame.mixer.music.load('game over.mp3')
+        pygame.mixer.music.load('Resursi\Zvučni efekti\game over.mp3')
         pygame.mixer.music.play()
         if brojač_pogodaka<=25:
             print('Ukupan broj pogodaka: {} ... Jadno!' .format(brojač_pogodaka))
@@ -232,9 +232,9 @@ while run:
         
         if Mario.lijevo:
             smjer=-1
-            bullet=pygame.image.load('bullet-lijevo.png')
+            bullet=pygame.image.load('Resursi\Sprites\metak-lijevo.png')
         else:
-            bullet=pygame.image.load('bullet-desno.png')
+            bullet=pygame.image.load('Resursi\Sprites\metak-desno.png')
             smjer=1
         if len(municija)<1:
             fireball.play()
