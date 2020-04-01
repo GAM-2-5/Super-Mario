@@ -1,0 +1,3 @@
+POTREBNE PYTHON KNJIŽNICE I KAKO IH INSTALIRATI
+
+U direktoriju gdje se nalazi Python, kliknita na mapu 'Scripts'. Lijevim klikom kliknite na pravokutnik gdje je prikazan direktorij i upišie 'cmd'. Da biste instalirali Pygame upišite 'pip install pygame'. Za instaliravanje NumPy upišite 'pip install numpy'. Za instaliravanje OpenCV upišite 'pip install opencv-python'. Sve ove knjižnice su nužne za uspješan rad igre.
