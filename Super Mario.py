@@ -22,15 +22,7 @@ fireball=pygame.mixer.Sound('Resursi/Zvučni efekti/fireball.wav')
 font = pygame.font.SysFont('Comis Sans MS', 32)
 
 TIMER_EVENT=pygame.USEREVENT+1 #ubrzavanje gljive
-pygame.time.set_timer(TIMER_EVENT,10600)
-TIMER_EVENT1=pygame.USEREVENT+2
-pygame.time.set_timer(TIMER_EVENT1,21200)
-TIMER_EVENT2=pygame.USEREVENT+3
-pygame.time.set_timer(TIMER_EVENT2,31800)
-TIMER_EVENT3=pygame.USEREVENT+4
-pygame.time.set_timer(TIMER_EVENT3,42400)
-TIMER_EVENT4=pygame.USEREVENT+5
-pygame.time.set_timer(TIMER_EVENT4,53000)
+pygame.time.set_timer(TIMER_EVENT,10000)
 
 dužina_slike=50 # sprite-ovi
 visina_slike=58
@@ -96,15 +88,11 @@ class gljiva(object):
     def move(self):
         for event in pygame.event.get():
             if event.type==TIMER_EVENT:
-                neprijatelj.vel+=5
-            if event.type==TIMER_EVENT1:
-                neprijatelj.vel+=10
-            if event.type==TIMER_EVENT2:
-                neprijatelj.vel+=16
-            if event.type==TIMER_EVENT3:
-                neprijatelj.vel+=20
-            if event.type==TIMER_EVENT4:
-                neprijatelj.vel+=20
+                if neprijatelj.vel>0:
+                    neprijatelj.vel+=3
+                else:
+                    neprijatelj.vel-=3
+
         if self.vel>0:
             if self.x+self.vel<self.put[1]:
                 self.x+=self.vel
@@ -117,8 +105,7 @@ class gljiva(object):
             else:
                 self.vel=self.vel*-1
                 self.x+=self.vel
-                self.brojač_hoda=0
-            
+                self.brojač_hoda=0       
         
 class igrač(object):
 
@@ -158,19 +145,19 @@ class igrač(object):
     def hit(self):
         win.blit(pozadina,(move_x,0))
         win.blit(neprijatelj.gljiva_hod[1],(neprijatelj.x,neprijatelj.y))
-        win.blit(fail,(self.x,self.y))
+        win.blit(fail,(self.x,self.y-3))
         pygame.display.update()
         pygame.mixer.music.load('Resursi\Zvučni efekti\game over.mp3')
         pygame.mixer.music.play()
-        if brojač_pogodaka<=25:
+        if brojač_pogodaka<=40:
             print('Ukupan broj pogodaka: {} ... Jadno!' .format(brojač_pogodaka))
-        if brojač_pogodaka>25 and brojač_pogodaka<=35:
+        if brojač_pogodaka>40 and brojač_pogodaka<=45:
             print('Ukupan broj pogodaka: {} ... Meh!' .format(brojač_pogodaka))
-        if brojač_pogodaka>35 and brojač_pogodaka<=45:
-            print('Ukupan broj pogodaka: {} ... Nije loše!').format(brojač_pogodaka)
-        if brojač_pogodaka>45 and brojač_pogodaka<=60:
+        if brojač_pogodaka>45 and brojač_pogodaka<=55:
+            print('Ukupan broj pogodaka: {} ... Nije loše!' .format(brojač_pogodaka))
+        if brojač_pogodaka>55 and brojač_pogodaka<=70:
             print('Ukupan broj pogodaka: {} ... Opa!' .format(brojač_pogodaka))
-        if brojač_pogodaka>60:
+        if brojač_pogodaka>70:
             print('Ukupan broj pogodaka: {} ... To legendo!' .format(brojač_pogodaka))
         pygame.time.delay(3050)
         pygame.quit()
@@ -201,12 +188,13 @@ def crtanje():  #crtač objekata
         metak.crtaj(win)
     pygame.display.update()
 
-Mario=igrač(480,435,35,35)
+Mario=igrač(800,435,35,35)
 neprijatelj=gljiva(0,453,32,32,960-40)
 municija=[]
 shootLoop=1
 # glavna petlja
 while run:  
+
     clock.tick(60)   # FPS
         
     if Mario.hitbox[1]<neprijatelj.hitbox[1]+neprijatelj.hitbox[3] and Mario.hitbox[1]+Mario.hitbox[3]>neprijatelj.hitbox[1]:
