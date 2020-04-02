@@ -89,7 +89,7 @@ class gljiva(object):
         else:
             win.blit(self.gljiva_hod[self.brojač_hoda//45],(self.x,self.y))
             self.brojač_hoda+=1
-        self.hitbox=(self.x,self.y+2,42,45)
+        self.hitbox=(self.x+2,self.y+2,38,40)
         #pygame.draw.rect(win,(255,0,0),self.hitbox,2)
 
     def move(self):
