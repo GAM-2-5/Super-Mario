@@ -89,9 +89,9 @@ class gljiva(object):
         for event in pygame.event.get():
             if event.type==TIMER_EVENT:
                 if neprijatelj.vel>0:
-                    neprijatelj.vel+=3
+                    neprijatelj.vel+=4
                 else:
-                    neprijatelj.vel-=3
+                    neprijatelj.vel+=4
 
         if self.vel>0:
             if self.x+self.vel<self.put[1]:
@@ -151,13 +151,13 @@ class igrač(object):
         pygame.mixer.music.play()
         if brojač_pogodaka<=40:
             print('Ukupan broj pogodaka: {} ... Jadno!' .format(brojač_pogodaka))
-        if brojač_pogodaka>40 and brojač_pogodaka<=45:
+        if brojač_pogodaka>40 and brojač_pogodaka<=50:
             print('Ukupan broj pogodaka: {} ... Meh!' .format(brojač_pogodaka))
-        if brojač_pogodaka>45 and brojač_pogodaka<=55:
+        if brojač_pogodaka>50 and brojač_pogodaka<=60:
             print('Ukupan broj pogodaka: {} ... Nije loše!' .format(brojač_pogodaka))
-        if brojač_pogodaka>55 and brojač_pogodaka<=70:
+        if brojač_pogodaka>60 and brojač_pogodaka<=80:
             print('Ukupan broj pogodaka: {} ... Opa!' .format(brojač_pogodaka))
-        if brojač_pogodaka>70:
+        if brojač_pogodaka>80:
             print('Ukupan broj pogodaka: {} ... To legendo!' .format(brojač_pogodaka))
         pygame.time.delay(3050)
         pygame.quit()
