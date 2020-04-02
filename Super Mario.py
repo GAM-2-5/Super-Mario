@@ -50,6 +50,7 @@ for i in range (len(lijevi_hod)):
     idle=pygame.transform.scale(idle,(dužina_slike,visina_slike))
 
 pozadina=pygame.image.load('Resursi\pozadina.png')
+
 move_x=0
 move_x2=298
 move_x3=420
@@ -154,7 +155,9 @@ class igrač(object):
         self.hitbox=(self.x+2,self.y,47,62)
         #pygame.draw.rect(win,(0,0,255),self.hitbox,2)
 
-    def hit(self): 
+    def hit(self):
+        win.blit(pozadina,(move_x,0))
+        win.blit(neprijatelj.gljiva_hod[1],(neprijatelj.x,neprijatelj.y))
         win.blit(fail,(self.x,self.y))
         pygame.display.update()
         pygame.mixer.music.load('Resursi\Zvučni efekti\game over.mp3')
