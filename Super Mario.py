@@ -1,8 +1,8 @@
 import pygame
 import Videoplayer
+
 pygame.init()
 pygame.font.init()
-
 
 win=pygame.display.set_mode((960,540),pygame.RESIZABLE)#dimenzije prozora
 zaslon_dužina=960
@@ -17,7 +17,7 @@ pygame.mixer.pre_init(channels=2)
 pygame.mixer.music.load('Resursi\Zvučni efekti\Mario song.mp3')
 pygame.mixer.music.play(loops=-1)
 jump=pygame.mixer.Sound('Resursi\Zvučni efekti\Mario Jump.wav')
-fireball=pygame.mixer.Sound('fireball.wav')
+fireball=pygame.mixer.Sound('Resursi/Zvučni efekti/fireball.wav')
 
 font = pygame.font.SysFont('Comis Sans MS', 32)
 
@@ -314,6 +314,5 @@ while run:
     win.blit(text,(0,0))
     #pygame.display.update()
     pygame.display.flip()
-
 
 pygame.quit()
