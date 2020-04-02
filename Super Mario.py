@@ -1,5 +1,5 @@
 import pygame
-import videoplayer
+import Videoplayer
 pygame.init()
 pygame.font.init()
 
@@ -16,23 +16,23 @@ pygame.mixer.init() #zvučni efekti
 pygame.mixer.pre_init(channels=2)
 pygame.mixer.music.load('Resursi\Zvučni efekti\Mario song.mp3')
 pygame.mixer.music.play(loops=-1)
-fireball=pygame.mixer.Sound('fireball.wav')
 jump=pygame.mixer.Sound('Resursi\Zvučni efekti\Mario Jump.wav')
+fireball=pygame.mixer.Sound('fireball.wav')
 
 font = pygame.font.SysFont('Comis Sans MS', 32)
 
 TIMER_EVENT=pygame.USEREVENT+1 #ubrzavanje gljive
-pygame.time.set_timer(TIMER_EVENT,10500)
+pygame.time.set_timer(TIMER_EVENT,10600)
 TIMER_EVENT1=pygame.USEREVENT+2
-pygame.time.set_timer(TIMER_EVENT1,21000)
+pygame.time.set_timer(TIMER_EVENT1,21200)
 TIMER_EVENT2=pygame.USEREVENT+3
-pygame.time.set_timer(TIMER_EVENT2,31500)
+pygame.time.set_timer(TIMER_EVENT2,31800)
 TIMER_EVENT3=pygame.USEREVENT+4
-pygame.time.set_timer(TIMER_EVENT3,42000)
+pygame.time.set_timer(TIMER_EVENT3,42400)
 TIMER_EVENT4=pygame.USEREVENT+5
-pygame.time.set_timer(TIMER_EVENT4,50500)
+pygame.time.set_timer(TIMER_EVENT4,53000)
 
-dužina_slike=50 # slike
+dužina_slike=50 # sprite-ovi
 visina_slike=58
 bullet=pygame.image.load('Resursi\Sprites\metak.png')
 bullet=pygame.transform.rotozoom(bullet,-90,1)
@@ -40,6 +40,9 @@ bullet=pygame.transform.rotozoom(bullet,-90,1)
 desni_hod=[pygame.image.load('Resursi\Sprites\mario 1.png'),pygame.image.load('Resursi\Sprites\mario 2.png'),pygame.image.load('Resursi\Sprites\mario 3.png'),pygame.image.load('Resursi\Sprites\mario 4.png')] 
 lijevi_hod=[pygame.image.load('Resursi\Sprites\mario 1 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 2 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 3 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 4 obrnuti.png')]
 idle=pygame.image.load('Resursi\Sprites\mario 1.png')
+
+fail=pygame.image.load('Resursi\Sprites\mario fail.png')
+fail=pygame.transform.scale(fail,(dužina_slike+4,visina_slike+1))
 
 for i in range (len(lijevi_hod)):
     lijevi_hod[i]=pygame.transform.scale(lijevi_hod[i],(dužina_slike,visina_slike))
@@ -151,7 +154,9 @@ class igrač(object):
         self.hitbox=(self.x+2,self.y,47,62)
         #pygame.draw.rect(win,(0,0,255),self.hitbox,2)
 
-    def hit(self):    
+    def hit(self): 
+        win.blit(fail,(self.x,self.y))
+        pygame.display.update()
         pygame.mixer.music.load('Resursi\Zvučni efekti\game over.mp3')
         pygame.mixer.music.play()
         if brojač_pogodaka<=25:
@@ -164,7 +169,7 @@ class igrač(object):
             print('Ukupan broj pogodaka: {} ... Opa!' .format(brojač_pogodaka))
         if brojač_pogodaka>60:
             print('Ukupan broj pogodaka: {} ... To legendo!' .format(brojač_pogodaka))
-        pygame.time.delay(3100)
+        pygame.time.delay(3050)
         pygame.quit()
         
         
@@ -209,7 +214,7 @@ while run:
     if shootLoop>1:
         shootLoop=0
     
-    for metak in municija:
+    for metak in municija: # pucanje
         if metak.y-metak.radius<neprijatelj.hitbox[1]+neprijatelj.hitbox[3] and metak.y+metak.radius>neprijatelj.hitbox[1]:
             if metak.x+metak.radius>neprijatelj.hitbox[0] and metak.x-metak.radius<neprijatelj.hitbox[0]+neprijatelj.hitbox[2]:
                 brojač_pogodaka+=1
@@ -240,7 +245,7 @@ while run:
             fireball.play()
             municija.append(projektil(round(Mario.x+Mario.width//2),round(Mario.y+Mario.height//2),6,(0,0,0),smjer))
 
-    if tipka[pygame.K_m]:
+    if tipka[pygame.K_m]: # kontrole
         pygame.mixer.music.pause()
   
     if tipka[pygame.K_a] and Mario.x>Mario.vel:
