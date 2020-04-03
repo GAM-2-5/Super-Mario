@@ -294,7 +294,6 @@ while run:
 
     if Mario.hitbox[1]+Mario.hitbox[3]<neprijatelj.hitbox[1]+neprijatelj.hitbox[3] and Mario.hitbox[1]>neprijatelj.hitbox[1]:
             if Mario.hitbox[0]>neprijatelj.hitbox[0] and Mario.hitbox[0]+Mario.hitbox[2]<neprijatelj.hitbox[0]+neprijatelj.hitbox[2]:
-                print('Vrijeme: '+pygame.time.get_ticks()/1000)
                 run=False
 
     crtanje()
