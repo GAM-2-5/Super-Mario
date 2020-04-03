@@ -1,6 +1,6 @@
 SOFTVERI KOJE SAM KORISTIO
 
 Kodiranje - PYTHON - https://www.python.org/
-Uređivanje slika - GIMP - https://www.gimp.org/
+Uređivanje sprite-ova - GIMP - https://www.gimp.org/
 Uređivanje videozapisa - HITFILM EXPRESS - https://fxhome.com/hitfilm-express
 TUTORIAL PYGAME PROGRAMIRANJA - https://www.youtube.com/playlist?list=PLzMcBGfZo4-lp3jAExUCewBfMx3UZFkh5
