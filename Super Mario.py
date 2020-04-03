@@ -296,14 +296,12 @@ while run:
             if Mario.hitbox[0]>neprijatelj.hitbox[0] and Mario.hitbox[0]+Mario.hitbox[2]<neprijatelj.hitbox[0]+neprijatelj.hitbox[2]:
                 print('Vrijeme: '+pygame.time.get_ticks()/1000)
                 run=False
-    if tipka[pygame.K_p]:
-        pygame.time.delay(0)
 
     crtanje()
-    
+  
     text = font.render('Broj pogodaka: {}'.format(brojač_pogodaka), True, (255,255,255))
-    win.blit(text,(0,0))
-    #pygame.display.update()
-    pygame.display.flip()
+    win.blit(text,(7,7))
+
+    pygame.display.update()
 
 pygame.quit()
