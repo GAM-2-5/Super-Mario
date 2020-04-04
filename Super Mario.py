@@ -36,6 +36,8 @@ font = pygame.font.SysFont('Comis Sans MS', 32)
 
 TIMER_EVENT=pygame.USEREVENT+1 #ubrzavanje gljive
 pygame.time.set_timer(TIMER_EVENT,10000)
+TIMER_EVENT1=pygame.USEREVENT+2 
+pygame.time.set_timer(TIMER_EVENT1,20000)
 
 dužina_slike=50 # sprite-ovi
 visina_slike=58
@@ -93,7 +95,7 @@ class gljiva(object):
         self.height=height
         self.put=[x,kraj]
         self.brojač_hoda=0
-        self.vel=3
+        self.vel=4
         self.hitbox=(self.x-5,self.y,55,45)
 
     def crtaj(self,win):
@@ -111,12 +113,6 @@ class gljiva(object):
         #pygame.draw.rect(win,(255,0,0),self.hitbox,2)
 
     def move(self):
-        for event in pygame.event.get():
-            if event.type==TIMER_EVENT:
-                if neprijatelj.vel>0:
-                    neprijatelj.vel+=4
-                else:
-                    neprijatelj.vel+=4
 
         if self.vel>0:
             if self.x+self.vel<self.put[1]:
@@ -250,7 +246,17 @@ while run:
     for event in pygame.event.get(): #zatvaranje prozora
         if event.type==pygame.QUIT or tipka[pygame.K_ESCAPE]:
             run=False
-
+        if event.type==TIMER_EVENT:
+            if neprijatelj.vel<0:
+                neprijatelj.vel-=4
+            else:
+                neprijatelj.vel+=4
+        if event.type==TIMER_EVENT1:
+            if neprijatelj.vel<0:
+                neprijatelj.vel-=4
+            else:
+                neprijatej.vel+=4
+            
     if tipka[pygame.K_SPACE] and shootLoop==0: # pucanje
         
         if Mario.lijevo:
