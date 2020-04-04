@@ -54,7 +54,10 @@ for i in range (len(lijevi_hod)):
     desni_hod[i]=pygame.transform.scale(desni_hod[i],(dužina_slike,visina_slike))
     idle=pygame.transform.scale(idle,(dužina_slike,visina_slike))
 
-pozadina=pygame.image.load('Resursi\pozadina.png')
+try:
+    pozadina=pygame.image.load('Ostalo\pozadina.png')
+except:
+    pozadina=pygame.image.load('Resursi\pozadina.png')
 
 move_x=0
 move_x2=298
