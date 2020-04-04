@@ -34,7 +34,7 @@ while(cap.isOpened()):
   ret, frame = cap.read()
   if ret == True:
     cv2.imshow('Super Mario Opening',frame)
-    if cv2.waitKey(int(round((1/x)*1000,0))) & 0xFF == ord('q'):
+    if cv2.waitKey(int(round((1/x)*1000,0))-9) & 0xFF == ord('q'):
       pg.mixer.music.pause()
       break
   else: 
