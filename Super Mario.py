@@ -45,16 +45,16 @@ except:
     bullet=pygame.image.load('Resursi\Sprites\metak.png')
 bullet=pygame.transform.rotozoom(bullet,-90,1)
 
-try:
-   desni_hod=[pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Customs\mario.png')] 
-   lijevi_hod=[pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png')] 
-   idle=pygame.image.load('Custom\mario.png')
-   fail=pygame.image.load('Custom\mario.png')
-except:
-    desni_hod=[pygame.image.load('Resursi\Sprites\mario 1.png'),pygame.image.load('Resursi\Sprites\mario 2.png'),pygame.image.load('Resursi\Sprites\mario 3.png'),pygame.image.load('Resursi\Sprites\mario 4.png')] 
-    lijevi_hod=[pygame.image.load('Resursi\Sprites\mario 1 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 2 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 3 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 4 obrnuti.png')]
-    idle=pygame.image.load('Resursi\Sprites\mario 1.png')
-    fail=pygame.image.load('Resursi\Sprites\mario fail.png')
+#try:
+desni_hod=[pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png')] 
+lijevi_hod=[pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png')] 
+idle=pygame.image.load('Custom\mario.png')
+fail=pygame.image.load('Custom\mario.png')
+#except:
+#    desni_hod=[pygame.image.load('Resursi\Sprites\mario 1.png'),pygame.image.load('Resursi\Sprites\mario 2.png'),pygame.image.load('Resursi\Sprites\mario 3.png'),pygame.image.load('Resursi\Sprites\mario 4.png')] 
+#    lijevi_hod=[pygame.image.load('Resursi\Sprites\mario 1 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 2 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 3 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 4 obrnuti.png')]
+#    idle=pygame.image.load('Resursi\Sprites\mario 1.png')
+#    fail=pygame.image.load('Resursi\Sprites\mario fail.png')
 
 fail=pygame.transform.scale(fail,(dužina_slike+4,visina_slike+1))
 
