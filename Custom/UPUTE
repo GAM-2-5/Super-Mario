@@ -1,0 +1,11 @@
+UPUTE ZA KORIŠTENJE CUSTOM ZUVČNIH EFEKATA
+
+Ako želite promijeniti podešene zvučne fekte igrice ili uvodnu špicu, željene datoteke morate ubaciti u 'Custom' folder po sljedećim pravilima:
+Ako želite promjeniti: zvuk uvodne špice, imenujte file 'Opening' s nastavkom .mp3
+                       video uvodne špice, imenujte file 'Super Mario Opening' s nastavkom .mp4
+                       pozadinski zvuk igre, imenujte file 'Mario song' s nastavkom .mp3
+                       zvuk skoka, imenujte file 'Mario Jump' s nastavkom .wav
+                       zvuk fireball-a, imenujte file 'fireball' s nastavkom .wav
+                       zvuk kraja igre, imenujte file 'game over' s nastavkom .mp3
+
+Ako nešto napravite krivo, python će učitati podešene zvukove.
