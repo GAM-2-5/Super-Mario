@@ -14,10 +14,23 @@ pygame.display.set_caption('Super Mario')
 
 pygame.mixer.init() #zvučni efekti
 pygame.mixer.pre_init(channels=2)
-pygame.mixer.music.load('Resursi\Zvučni efekti\Mario song.mp3')
+
+try:
+    pygame.mixer.music.load('Custom\Mario song.mp3')
+except:
+    pygame.mixer.music.load('Resursi\Zvučni efekti\Mario song.mp3')
+    
 pygame.mixer.music.play(loops=-1)
-jump=pygame.mixer.Sound('Resursi\Zvučni efekti\Mario Jump.wav')
-fireball=pygame.mixer.Sound('Resursi/Zvučni efekti/fireball.wav')
+
+try:
+    jump=pygame.mixer.Sound('Custom\Mario Jump.wav')
+except:
+    jump=pygame.mixer.Sound('Resursi\Zvučni efekti\Mario Jump.wav')
+
+try:
+    fireball=pygame.mixer.Sound('Custom/fireball.wav')
+except:
+    fireball=pygame.mixer.Sound('Resursi/Zvučni efekti/fireball.wav')
 
 font = pygame.font.SysFont('Comis Sans MS', 32)
 
@@ -147,7 +160,10 @@ class igrač(object):
         win.blit(neprijatelj.gljiva_hod[1],(neprijatelj.x,neprijatelj.y))
         win.blit(fail,(self.x,self.y-3))
         pygame.display.update()
-        pygame.mixer.music.load('Resursi\Zvučni efekti\game over.mp3')
+        try:
+            pygame.mixer.music.load('Custom\game over.mp3')
+        except:
+            pygame.mixer.music.load('Resursi\Zvučni efekti\game over.mp3')
         pygame.mixer.music.play()
         if brojač_pogodaka<=40:
             print('Ukupan broj pogodaka: {} ... Jadno!' .format(brojač_pogodaka))
@@ -222,8 +238,7 @@ while run:
     for event in pygame.event.get(): #zatvaranje prozora
         if event.type==pygame.QUIT or tipka[pygame.K_ESCAPE]:
             run=False
-        if event.type==TIMER_EVENT:
-            neprijatelj.vel-=5
+
     if tipka[pygame.K_SPACE] and shootLoop==0: # pucanje
         
         if Mario.lijevo:
