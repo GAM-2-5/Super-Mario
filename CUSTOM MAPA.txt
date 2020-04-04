@@ -1,6 +1,6 @@
 UPUTE ZA KORIŠTENJE CUSTOM ZUVČNIH EFEKATA
 
-Ako želite promijeniti određene zvučne efekte u igri ili uvodnu špicu, 
+Ako želite promijeniti neke resurse u igri, 
 željene datoteke morate staviti u 'Custom' folder po sljedećim pravilima.
 
 Ako želite promjeniti: zvuk uvodne špice, imenujte file 'Opening' s nastavkom .mp3
