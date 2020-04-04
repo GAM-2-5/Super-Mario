@@ -17,7 +17,6 @@ except:
 
 pg.mixer.music.play()
 
-
 try:
   cap=cv2.VideoCapture('Custom\Super Mario Opening.mp4')
 
