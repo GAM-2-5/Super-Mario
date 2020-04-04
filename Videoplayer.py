@@ -23,8 +23,8 @@ if (cv2.VideoCapture('Custom\Super Mario Opening.mp4').isOpened())==True:
 else:
   x='Resursi\Super Mario Opening.mp4'
 
-#if (cv2.VideoCapture('Custom\Super Mario Opening.mp4').isOpened()== False): 
-#  print("Error opening video stream or file")
+if (cv2.VideoCapture('Custom\Super Mario Opening.mp4').isOpened()== False): 
+  print("Error opening video stream or file")
 
 cap=cv2.VideoCapture(x)
 x=cap.get(cv2.CAP_PROP_FPS)
