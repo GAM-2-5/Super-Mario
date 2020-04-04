@@ -39,14 +39,23 @@ pygame.time.set_timer(TIMER_EVENT,10000)
 
 dužina_slike=50 # sprite-ovi
 visina_slike=58
-bullet=pygame.image.load('Resursi\Sprites\metak.png')
+try:
+    bullet=pygame.image.load('Custom\metak.png')
+except:
+    bullet=pygame.image.load('Resursi\Sprites\metak.png')
 bullet=pygame.transform.rotozoom(bullet,-90,1)
 
-desni_hod=[pygame.image.load('Resursi\Sprites\mario 1.png'),pygame.image.load('Resursi\Sprites\mario 2.png'),pygame.image.load('Resursi\Sprites\mario 3.png'),pygame.image.load('Resursi\Sprites\mario 4.png')] 
-lijevi_hod=[pygame.image.load('Resursi\Sprites\mario 1 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 2 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 3 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 4 obrnuti.png')]
-idle=pygame.image.load('Resursi\Sprites\mario 1.png')
+try:
+   desni_hod=[pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Customs\mario.png')] 
+   lijevi_hod=[pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png')] 
+   idle=pygame.image.load('Custom\mario.png')
+   fail=pygame.image.load('Custom\mario.png')
+except:
+    desni_hod=[pygame.image.load('Resursi\Sprites\mario 1.png'),pygame.image.load('Resursi\Sprites\mario 2.png'),pygame.image.load('Resursi\Sprites\mario 3.png'),pygame.image.load('Resursi\Sprites\mario 4.png')] 
+    lijevi_hod=[pygame.image.load('Resursi\Sprites\mario 1 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 2 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 3 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 4 obrnuti.png')]
+    idle=pygame.image.load('Resursi\Sprites\mario 1.png')
+    fail=pygame.image.load('Resursi\Sprites\mario fail.png')
 
-fail=pygame.image.load('Resursi\Sprites\mario fail.png')
 fail=pygame.transform.scale(fail,(dužina_slike+4,visina_slike+1))
 
 for i in range (len(lijevi_hod)):
@@ -55,7 +64,7 @@ for i in range (len(lijevi_hod)):
     idle=pygame.transform.scale(idle,(dužina_slike,visina_slike))
 
 try:
-    pozadina=pygame.image.load('Ostalo\pozadina.png')
+    pozadina=pygame.image.load('Custom\pozadina.png')
 except:
     pozadina=pygame.image.load('Resursi\pozadina.png')
 
