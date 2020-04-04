@@ -17,11 +17,11 @@ except:
 
 pg.mixer.music.play()
 
-if (cv2.VideoCapture('Custom\Super Mario Opening.mp4').isOpened())==True:
-  x='Custom\Super Mario Opening.mp4'
+if (cv2.VideoCapture('Custom\Opening.mp4').isOpened())==True:
+  x='Custom\Opening.mp4'
 
 else:
-  x='Resursi\Super Mario Opening.mp4'
+  x='Resursi\Opening.mp4'
 
 cap=cv2.VideoCapture(x)
 x=cap.get(cv2.CAP_PROP_FPS)
@@ -31,7 +31,7 @@ while(cap.isOpened()):
   ret, frame = cap.read()
   if ret == True:
     cv2.imshow('Super Mario Opening',frame)
-    if cv2.waitKey(int(round((1/x)*1000,0))-9) & 0xFF == ord('q'):
+    if cv2.waitKey(int(round((1/x)*1000,0))-12) & 0xFF == ord('q'):
       pg.mixer.music.pause()
       break
   else: 
