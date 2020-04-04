@@ -1,6 +1,6 @@
 UPUTE ZA KORIŠTENJE CUSTOM ZUVČNIH EFEKATA
 
-Ako želite promijeniti podešene zvučne fekte igrice ili uvodnu špicu, željene datoteke morate ubaciti u 'Custom' folder po sljedećim pravilima:
+Ako želite promijeniti određene zvučne efekte u igri ili uvodnu špicu, željene datoteke morate staviti u 'Custom' folder po sljedećim pravilima:
 Ako želite promjeniti: zvuk uvodne špice, imenujte file 'Opening' s nastavkom .mp3
                        video uvodne špice, imenujte file 'Super Mario Opening' s nastavkom .mp4
                        pozadinski zvuk igre, imenujte file 'Mario song' s nastavkom .mp3
