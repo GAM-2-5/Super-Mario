@@ -17,14 +17,16 @@ except:
 
 pg.mixer.music.play()
 
-try:
-  cap=cv2.VideoCapture('Custom\Super Mario Opening.mp4')
+if (cv2.VideoCapture('Custom\Super Mario Opening.mp4').isOpened())==True:
+  x='Custom\Super Mario Opening.mp4'
 
-except:
-  x=1
-cap=cv2.VideoCapture('Resursi\Super Mario Opening.mp4')
-if (cap.isOpened()== False): 
+else:
+  x='Resursi\Super Mario Opening.mp4'
+
+if (cv2.VideoCapture('Custom\Super Mario Opening.mp4').isOpened()== False): 
   print("Error opening video stream or file")
+
+cap=cv2.VideoCapture(x)
 
 while(cap.isOpened()):
 
