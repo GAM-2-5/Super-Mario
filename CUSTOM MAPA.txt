@@ -1,6 +1,6 @@
-UPUTE ZA KORIŠTENJE CUSTOM ZUVČNIH EFEKATA
+UPUTE ZA KORIŠTENJE CUSTOM RESURSA IGRE	
 
-Ako želite promijeniti neke resurse u igri, 
+Ako želite promijeniti određene zvučne efekte u igri ili uvodnu špicu, 
 željene datoteke morate staviti u 'Custom' folder po sljedećim pravilima.
 
 Ako želite promjeniti: zvuk uvodne špice, imenujte file 'Opening' s nastavkom .mp3
@@ -10,7 +10,10 @@ Ako želite promjeniti: zvuk uvodne špice, imenujte file 'Opening' s nastavkom 
                        zvuk skoka, imenujte file 'Mario Jump' s nastavkom .wav
                        zvuk fireball-a, imenujte file 'fireball' s nastavkom .wav
                        zvuk kraja igre, imenujte file 'game over' s nastavkom .mp3
+		       lik Maria, imenujte file 'mario' s nastavkom .png
+		       lik gljive, imenujte file 'gljiva' s nastavkom .png
+		       izgled fireball-a, imenujte file 'metak' s nastavkom .png
 
 *Ako želite promjeniti zvuk i video uvodne špice, to moraju biti zasebni i odvojeni file-ovi (mp4 i mp3).*
-*Python može puštati samo videe od 30 FPS-a!*                  
+                 
 Ako nešto napravite krivo, python će učitati podešene zvukove.
