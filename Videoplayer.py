@@ -33,7 +33,7 @@ while(cap.isOpened()):
   ret, frame = cap.read()
   if ret == True:
     cv2.imshow('Super Mario Opening',frame)
-    if cv2.waitKey(int(round((1/x)*1000,0))-12) & 0xFF == ord('q'): #zatvaranje prozora tipkom Q
+    if cv2.waitKey(int(round((1/x)*1000,0))-10) & 0xFF == ord('q'): #zatvaranje prozora tipkom Q
       pg.mixer.music.pause()
       break
   else: 
