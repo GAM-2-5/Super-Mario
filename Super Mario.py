@@ -205,7 +205,7 @@ def crtanje():  #crtač objekata
         metak.crtaj(win)
     pygame.display.update()#osvježavanje prozora
 #pozicija objekata
-Mario=igrač(800,435,35,35)
+Mario=igrač(870,435,35,35)
 neprijatelj=gljiva(0,453,32,32,960-40)
 #ograničavanje municije
 municija=[]
