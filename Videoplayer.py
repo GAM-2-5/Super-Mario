@@ -1,16 +1,11 @@
-import cv2 #unšenje potrebnih knjižnica
+import cv2 #unošenje potrebnih knjižnica
 import numpy as np
 import pygame as pg
-import random
 
-for i in range (1):#nasumični broj 1 ili 2
-    y=random.randint(1,2)
-
-pg.init() #izgled prozora
+pg.init() #inicijalizacija pygame-a
 pg.mixer.init()
-a=pg.image.load('Resursi\mario ikona.png')
-pg.display.set_icon(a)
-win=pg.display.set_mode((1920,1080),pg.RESIZABLE)
+
+win=pg.display.set_mode((1920,1080),pg.RESIZABLE)#izgled prozora
 pg.display.set_caption('Super Mario Opening')
 #učitavanje podataka
 try:
@@ -25,12 +20,6 @@ pg.mixer.music.play()
 
 if (cv2.VideoCapture('Custom\Opening.mp4').isOpened())==True:
   x='Custom\Opening.mp4'
-
-else:
-  if y==1:
-    x='Resursi\Opening.mp4'
-  else:
-    x='Resursi\Opening2.mp4'
 
 cap=cv2.VideoCapture(x)
 x=cap.get(cv2.CAP_PROP_FPS)
