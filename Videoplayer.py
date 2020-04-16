@@ -24,7 +24,7 @@ else:
 cap=cv2.VideoCapture(x)
 x=cap.get(cv2.CAP_PROP_FPS)
 
-while(cap.isOpened()):#puštanje videozapisa
+while(cap.isOpened()):#puštanje svakog pojedinog frame-a na ograničeno vrijeme
 
   ret, frame = cap.read()
 
