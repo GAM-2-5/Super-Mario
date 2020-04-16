@@ -1,0 +1,14 @@
+PRAVILA IGRE
+
+Kao Super Mario, tvoj zadatak je da vatrenim loptama što više puta pogodiš gljivu, neprijatelja. No ako te gljiva dotakne, igra završava. Kako igra prolazi, gljiva se kreće sve brže i brže. No što se bliže nalaziš gljivi, to ćeš brže moći pucati.
+
+KONTROLE
+
+W - skok
+A - lijevo
+D - desno
+S - poništavanje skoka
+SPACE - pucanje vatrenih lopti
+M - isključivanje glazbe
+ESC - izađi iz igre  
+Q - preskoči uvodnu špicu
