@@ -1,8 +1,7 @@
-import pygame
+import pygame #unošenje pygame-a i durog Python file-a
 import Videoplayer
 
-pygame.init()
-pygame.font.init()
+pygame.init() #inicijalizacija pygame-a
 
 win=pygame.display.set_mode((960,540),pygame.RESIZABLE)#dimenzije prozora
 zaslon_dužina=960
@@ -11,7 +10,6 @@ a=pygame.image.load('Resursi\mario ikona.png')
 pygame.display.set_icon(a)
 pygame.display.set_caption('Super Mario')
 pygame.mixer.init() #zvučni efekti
-pygame.mixer.pre_init(channels=2)
 
 try:
     pygame.mixer.music.load('Custom\Mario song.mp3')
@@ -29,8 +27,6 @@ try:
     fireball=pygame.mixer.Sound('Custom/fireball.wav')
 except:
     fireball=pygame.mixer.Sound('Resursi/Zvučni efekti/fireball.wav')
-
-font = pygame.font.SysFont('Comis Sans MS', 32)
 
 TIMER_EVENT=pygame.USEREVENT+1 #ubrzavanje gljive
 pygame.time.set_timer(TIMER_EVENT,10000)
@@ -85,8 +81,7 @@ clock=pygame.time.Clock()
 
 run=True
 
-
-class gljiva(object):
+class gljiva(object): #svi podatci za gljivu (kretanje, izgled, ponašanje)
     
     gljiva_hod=[pygame.image.load('Resursi\Sprites\gljiva1.png'),pygame.image.load('Resursi\Sprites\gljiva2.png')]
     for i in range (len(gljiva_hod)):
@@ -132,7 +127,7 @@ class gljiva(object):
                 self.x+=self.vel
                 self.brojač_hoda=0       
                    
-class igrač(object):
+class igrač(object): #svi podatci za Maria (kretanje, izgled, ponašanje)
 
     def __init__(self,x,y,width,height):
         self.x=x
@@ -174,7 +169,7 @@ class igrač(object):
         self.hitbox=(self.x+2,self.y,47,62)
         #pygame.draw.rect(win,(0,0,255),self.hitbox,2)
 
-    def hit(self):
+    def hit(self): # u slučaju da je Maria dotakla gljiva
         win.blit(neprijatelj.gljiva_hod[1],(neprijatelj.x,neprijatelj.y))
         win.blit(fail,(self.x,self.y-3))
         pygame.display.update()
@@ -210,14 +205,14 @@ class projektil(object):  #metci
 
 def crtanje():  #crtanje objekata
     global brojač_hoda
-    win.blit(pozadina,(move_x,0))#pozadina
+    win.blit(pozadina,(move_x,0))
     Mario.crtaj(win)
     neprijatelj.crtaj(win)
     for metak in municija:
         metak.crtaj(win)
     pygame.display.update()
 
-Mario=igrač(800,435,35,35)
+Mario=igrač(800,435,35,35) # gdje staviti Maria i gljivu
 neprijatelj=gljiva(0,453,32,32,960-40)
 municija=[]
 shootLoop=1
@@ -225,7 +220,7 @@ shootLoop=1
 while run:  
 
     clock.tick(60)   # FPS
-
+    #indentifikacija pogotka
     if Mario.hitbox[1]<neprijatelj.hitbox[1]+neprijatelj.hitbox[3] and Mario.hitbox[1]+Mario.hitbox[3]>neprijatelj.hitbox[1]:
         if Mario.hitbox[0]+Mario.hitbox[2]>neprijatelj.hitbox[0] and Mario.hitbox[0]<neprijatelj.hitbox[0]+neprijatelj.hitbox[2]:
             Mario.hit()
@@ -270,26 +265,27 @@ while run:
     if tipka[pygame.K_m]: # kontrole
         pygame.mixer.music.pause()
   
-    if tipka[pygame.K_a] and Mario.x>Mario.vel:
+    if tipka[pygame.K_a] and Mario.x>Mario.vel: #kretanje lijevo
         Mario.x-=Mario.vel
         Mario.lijevo=True
         Mario.desno=False
         Mario.stajanje=False
 
-    elif tipka[pygame.K_d] and Mario.x<zaslon_dužina-Mario.width-Mario.vel:
+    elif tipka[pygame.K_d] and Mario.x<zaslon_dužina-Mario.width-Mario.vel:#kretanje desno
         Mario.x+=Mario.vel
         Mario.lijevo=False
         Mario.desno=True
         Mario.stajanje=False
 
-    else:
+    else: #stajanje
         Mario.stajanje=True
         Mario.brojač_hoda=0
-    if tipka[pygame.K_s] and Mario.y!=435:
+    
+    if tipka[pygame.K_s] and Mario.y!=435: #brz povratak iz skoka
         Mario.y=435
         Mario.skok=False
 
-    if not Mario.skok:  #skok
+    if not Mario.skok:  #pokretanje skoka
         if tipka[pygame.K_w]:
             Mario.skok=True
             Mario.desno=False
@@ -298,7 +294,7 @@ while run:
             Mario.brojač_skoka=16
             jump.play()
 
-    else:
+    else: #skakanje
         if Mario.brojač_skoka>=-16:
             neg=1
             if Mario.brojač_skoka<0:
@@ -311,13 +307,13 @@ while run:
         else:
             Mario.skok=False
             Mario.bojač_skoka=16
-
+    #zaustavljanje programa pri sudaru
     if Mario.hitbox[1]+Mario.hitbox[3]<neprijatelj.hitbox[1]+neprijatelj.hitbox[3] and Mario.hitbox[1]>neprijatelj.hitbox[1]:
             if Mario.hitbox[0]>neprijatelj.hitbox[0] and Mario.hitbox[0]+Mario.hitbox[2]<neprijatelj.hitbox[0]+neprijatelj.hitbox[2]:
                 run=False
 
-    crtanje()
-  
+    crtanje() #konstantno crtanje svega unutar prozora
+    # prikazivanje broja pogodaka 
     text = font.render('Broj pogodaka: {}'.format(brojač_pogodaka), True, (255,255,255))
     win.blit(text,(7,7))
 
