@@ -12,14 +12,14 @@ try:
   pg.mixer.music.load('Custom\Opening.mp3')
 
 except:
-  if y==1:
     pg.mixer.music.load('Resursi\Zvučni efekti\Opening.mp3')
-  else:
-    pg.mixer.music.load('Resursi\Zvučni efekti\Opening2.mp3')
+
 pg.mixer.music.play()
 
 if (cv2.VideoCapture('Custom\Opening.mp4').isOpened())==True:
   x='Custom\Opening.mp4'
+else:
+  x='Resursi\Opening.mp4'
 
 cap=cv2.VideoCapture(x)
 x=cap.get(cv2.CAP_PROP_FPS)
