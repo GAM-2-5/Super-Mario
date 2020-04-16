@@ -46,6 +46,13 @@ except:
 bullet=pygame.transform.rotozoom(bullet,-90,1)
 
 try:
+    skok_desno=pygame.image.load('Custom\mario skače desno.png')
+    skok_lijevo=pygame.image.load('Custom\mario skače lijevo.png')
+except:
+    skok_desno=pygame.image.load('Resursi\Sprites\mario skače desno.png')
+    skok_lijevo=pygame.image.load('Resursi\Sprites\mario skače lijevo.png')
+
+try:
     desni_hod=[pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png')] 
     lijevi_hod=[pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png')] 
     idle=pygame.image.load('Custom\mario.png')
@@ -62,6 +69,8 @@ for i in range (len(lijevi_hod)):
     lijevi_hod[i]=pygame.transform.scale(lijevi_hod[i],(dužina_slike,visina_slike))
     desni_hod[i]=pygame.transform.scale(desni_hod[i],(dužina_slike,visina_slike))
     idle=pygame.transform.scale(idle,(dužina_slike,visina_slike))
+    skok_desno=pygame.transform.scale(skok_desno,(dužina_slike,visina_slike))
+    skok_lijevo=pygame.transform.scale(skok_lijevo,(dužina_slike,visina_slike))
 
 try:
     pozadina=pygame.image.load('Custom\pozadina.png')
@@ -143,23 +152,29 @@ class igrač(object):
         if self.brojač_hoda+1>=60:
             self.brojač_hoda=0
 
-        if not (self.stajanje):   # hodanje
-            if self.lijevo:
-                win.blit(lijevi_hod[self.brojač_hoda//15],(self.x,self.y))
-                self.brojač_hoda+=1
-            elif self.desno:
-                win.blit(desni_hod[self.brojač_hoda//15],(self.x,self.y))
-                self.brojač_hoda+=1
-        else:
-            if self.desno:
-                win.blit(desni_hod[0],(self.x,self.y))
+        if not self.skok:
+            if not self.stajanje: # hodanje
+                if self.lijevo:
+                    win.blit(lijevi_hod[self.brojač_hoda//15],(self.x,self.y))
+                    self.brojač_hoda+=1
+                elif self.desno:
+                    win.blit(desni_hod[self.brojač_hoda//15],(self.x,self.y))
+                    self.brojač_hoda+=1
             else:
-                win.blit(lijevi_hod[0],(self.x,self.y))
+                if self.desno:
+                    win.blit(desni_hod[0],(self.x,self.y))
+                else:
+                    win.blit(lijevi_hod[0],(self.x,self.y))
+        if self.skok:
+                if Mario.desno:
+                    win.blit(skok_desno,(Mario.x,Mario.y))
+                else:
+                    win.blit(skok_lijevo,(Mario.x,Mario.y))
+                    
         self.hitbox=(self.x+2,self.y,47,62)
         #pygame.draw.rect(win,(0,0,255),self.hitbox,2)
 
     def hit(self):
-        win.blit(pozadina,(move_x,0))
         win.blit(neprijatelj.gljiva_hod[1],(neprijatelj.x,neprijatelj.y))
         win.blit(fail,(self.x,self.y-3))
         pygame.display.update()
@@ -193,10 +208,9 @@ class projektil(object):  #metci
     def crtaj(self,win):
         win.blit(bullet,(self.x,self.y))
 
-def crtanje():  #crtač objekata
+def crtanje():  #crtanje objekata
     global brojač_hoda
     win.blit(pozadina,(move_x,0))#pozadina
-
     Mario.crtaj(win)
     neprijatelj.crtaj(win)
     for metak in municija:
@@ -229,9 +243,7 @@ while run:
             metak.x+=metak.vel
         else:
             municija.pop(municija.index(metak))
-       # if  metak.y!=neprijatelj.y and metak.x!=neprijatelj.x:
-         #   win.blit(gljiva_mrtva,(neprijatelj.x,neprijatelj.y+10))
-          #  pygame.display.update()
+
     tipka=pygame.key.get_pressed() #kontrole
 
     for event in pygame.event.get(): #zatvaranje prozora
@@ -263,24 +275,13 @@ while run:
         Mario.lijevo=True
         Mario.desno=False
         Mario.stajanje=False
-        #if Mario.x<=200 and Mario.x>=100:
-            #move_x+=5
-            #move_x2+=5
-            #move_x3+=5
-            #move_x4+=5
-            #move_x5+=5
 
     elif tipka[pygame.K_d] and Mario.x<zaslon_dužina-Mario.width-Mario.vel:
         Mario.x+=Mario.vel
         Mario.lijevo=False
         Mario.desno=True
         Mario.stajanje=False
-        #if Mario.x>=500 and Mario.x<=2800:
-            #move_x-=5
-            #move_x2-=5
-            #move_x3-=5
-            #move_x4-=5
-            #move_x5-=5
+
     else:
         Mario.stajanje=True
         Mario.brojač_hoda=0
@@ -288,7 +289,7 @@ while run:
         Mario.y=435
         Mario.skok=False
 
-    if not (Mario.skok):  #skok
+    if not Mario.skok:  #skok
         if tipka[pygame.K_w]:
             Mario.skok=True
             Mario.desno=False
@@ -300,7 +301,7 @@ while run:
     else:
         if Mario.brojač_skoka>=-16:
             neg=1
-            if Mario.brojač_skoka <0:
+            if Mario.brojač_skoka<0:
                 neg=-1
             if  Mario.y==262 and Mario.x>=460 and Mario.x<=678:
                 Mario.y=262
@@ -320,6 +321,6 @@ while run:
     text = font.render('Broj pogodaka: {}'.format(brojač_pogodaka), True, (255,255,255))
     win.blit(text,(7,7))
 
-    pygame.display.update()
+    pygame.display.update() #konstantno osvježavanje prozora
 
-pygame.quit()
+pygame.quit() #kraj programa
