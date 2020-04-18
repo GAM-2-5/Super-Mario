@@ -9,6 +9,7 @@ zaslon_visina=540
 a=pygame.image.load('Resursi\mario ikona.png')
 pygame.display.set_icon(a)
 pygame.display.set_caption('Super Mario')
+font=pygame.font.SysFont('Super Mario 256 Bold',36)
 pygame.mixer.init() #zvučni efekti
 
 try:
