@@ -161,7 +161,7 @@ class igrač(object):
                     win.blit(desni_hod[0],(self.x,self.y))
                 else:
                     win.blit(lijevi_hod[0],(self.x,self.y))
-        if self.skok:
+        if self.skok: #skok
                 if Mario.desno:
                     win.blit(skok_desno,(Mario.x,Mario.y))
                 else:
@@ -170,7 +170,8 @@ class igrač(object):
         self.hitbox=(self.x+2,self.y,47,62)
         #pygame.draw.rect(win,(0,0,255),self.hitbox,2)
 
-    def hit(self):
+    def hit(self): #u slučaju sudara
+        win.blit(pozadina,(move_x,0))
         win.blit(neprijatelj.gljiva_hod[1],(neprijatelj.x,neprijatelj.y))
         win.blit(fail,(self.x,self.y-3))
         pygame.display.update()
@@ -191,8 +192,7 @@ class igrač(object):
             print('Ukupan broj pogodaka: {} ... To legendo!' .format(brojač_pogodaka))
         pygame.time.delay(3050)
         pygame.quit()
-        
-        
+               
 class projektil(object):  #metci
     def __init__(self,x,y,radius,boja,smjer):
         self.x=x
@@ -222,7 +222,7 @@ while run:
 
     clock.tick(60)   # FPS
 
-    if Mario.hitbox[1]<neprijatelj.hitbox[1]+neprijatelj.hitbox[3] and Mario.hitbox[1]+Mario.hitbox[3]>neprijatelj.hitbox[1]:
+    if Mario.hitbox[1]<neprijatelj.hitbox[1]+neprijatelj.hitbox[3] and Mario.hitbox[1]+Mario.hitbox[3]>neprijatelj.hitbox[1]: #sudar
         if Mario.hitbox[0]+Mario.hitbox[2]>neprijatelj.hitbox[0] and Mario.hitbox[0]<neprijatelj.hitbox[0]+neprijatelj.hitbox[2]:
             Mario.hit()
     if shootLoop>0:
