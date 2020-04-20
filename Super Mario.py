@@ -59,7 +59,7 @@ except:
     idle=pygame.image.load('Resursi\Sprites\mario 1.png')
     fail=pygame.image.load('Resursi\Sprites\mario fail.png')
 
-fail=pygame.transform.scale(fail,(dužina_slike+4,visina_slike+1))
+fail=pygame.transform.scale(fail,(dužina_slike+1,visina_slike))
 
 for i in range (len(lijevi_hod)):
     lijevi_hod[i]=pygame.transform.scale(lijevi_hod[i],(dužina_slike,visina_slike))
