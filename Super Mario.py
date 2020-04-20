@@ -315,7 +315,7 @@ while run:
     crtanje()
   
     text = font.render('Broj pogodaka : {}'.format(brojač_pogodaka), True, (255,0,0))
-    win.blit(text,(7,7))
+    win.blit(text,(7,8))
 
     pygame.display.update() #konstantno osvježavanje prozora
 
