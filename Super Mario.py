@@ -53,11 +53,15 @@ try:
     lijevi_hod=[pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png')] 
     idle=pygame.image.load('Custom\mario.png')
     fail=pygame.image.load('Custom\mario.png')
+    riba_desno=pygame.image.load('Custom\riba.png')
+    riba_lijevo=pygame.image.load('Custom\riba.png')
 except:
     desni_hod=[pygame.image.load('Resursi\Sprites\mario 1.png'),pygame.image.load('Resursi\Sprites\mario 2.png'),pygame.image.load('Resursi\Sprites\mario 3.png'),pygame.image.load('Resursi\Sprites\mario 4.png')] 
     lijevi_hod=[pygame.image.load('Resursi\Sprites\mario 1 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 2 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 3 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 4 obrnuti.png')]
     idle=pygame.image.load('Resursi\Sprites\mario 1.png')
     fail=pygame.image.load('Resursi\Sprites\mario fail.png')
+    riba_desno=[pygame.image.load('Resursi\Sprites/riba 1 obrnuta.png'),pygame.image.load('Resursi\Sprites/riba 2 obrnuta.png')]
+    riba_lijevo=[pygame.image.load('Resursi\Sprites/riba 1.png'),pygame.image.load('Resursi\Sprites/riba 2.png')]
 
 fail=pygame.transform.scale(fail,(dužina_slike+1,visina_slike))
 
@@ -81,12 +85,68 @@ clock=pygame.time.Clock()
 
 run=True
 
+class riba(object):
 
-class gljiva(object):
+    try:
+        riba_desno=pygame.image.load('Custom\riba.png')
+        riba_lijevo=pygame.image.load('Custom\riba.png')
+    except:
+        riba_desno=[pygame.image.load('Resursi\Sprites/riba 1 obrnuta.png'),pygame.image.load('Resursi\Sprites/riba 2 obrnuta.png')]
+        riba_lijevo=[pygame.image.load('Resursi\Sprites/riba 1.png'),pygame.image.load('Resursi\Sprites/riba 2.png')]
     
-    gljiva_hod=[pygame.image.load('Resursi\Sprites\gljiva1.png'),pygame.image.load('Resursi\Sprites\gljiva2.png')]
+    for j in range (len(riba_desno)):
+        riba_desno[j]=pygame.transform.scale(riba_desno[j],(41,44))
+        riba_lijevo[j]=pygame.transform.scale(riba_lijevo[j],(41,44))
+
+    def __init__(self,x,y,width,height,kraj):
+        self.x=x
+        self.y=y
+        self.width=width
+        self.height=height
+        self.put=[x,kraj]
+        self.brojač_hoda=0
+        self.vel=6
+        self.hitbox=(self.x-5,self.y,55,45)
+
+    def crtaj(self,win):
+        self.move()
+        if self.brojač_hoda+1>=36:
+            self.brojač_hoda=0
+            
+        if self.vel>0:
+            win.blit(self.riba_desno[self.brojač_hoda//18],(self.x,self.y))
+            self.brojač_hoda+=1
+        else:
+            win.blit(self.riba_lijevo[self.brojač_hoda//18],(self.x,self.y))
+            self.brojač_hoda+=1
+        self.hitbox=(self.x+2,self.y+2,40,40)
+        #pygame.draw.rect(win,(255,0,0),self.hitbox,2)
+
+    def move(self):
+
+        if self.vel>0:
+            if self.x+self.vel<self.put[1]:
+                self.x+=self.vel
+            else:
+                self.vel=self.vel*-1
+                self.brojač_hoda=0
+        else:
+            if self.x-self.vel>self.put[0]:
+                self.x+=self.vel
+            else:
+                self.vel=self.vel*-1
+                self.x+=self.vel
+                self.brojač_hoda=0
+                
+class gljiva(object):
+
+    try:
+        gljiva_hod=[pygame.image.load('Custom\gljiva.png'),pygame.image.load('Custom\gljiva.png')]
+    except:
+        gljiva_hod=[pygame.image.load('Resursi\Sprites\gljiva1.png'),pygame.image.load('Resursi\Sprites\gljiva2.png')]
+
     for i in range (len(gljiva_hod)):
-        gljiva_hod[i]=pygame.transform.scale(gljiva_hod[i],(44,40))
+        gljiva_hod[i]=pygame.transform.scale(gljiva_hod[i],(42,42))
         
     def __init__(self,x,y,width,height,kraj):
         self.x=x
@@ -173,13 +233,19 @@ class igrač(object):
     def hit(self): #u slučaju sudara
         win.blit(pozadina,(move_x,0))
         win.blit(neprijatelj.gljiva_hod[1],(neprijatelj.x,neprijatelj.y))
+        if riba.vel>0:
+            win.blit(riba.riba_desno[1],(riba.x,riba.y))
+        else:
+            win.blit(riba.riba_lijevo[1],(riba.x,riba.y))
         win.blit(fail,(self.x,self.y-3))
         pygame.display.update()
+
         try:
             pygame.mixer.music.load('Custom\game over.mp3')
         except:
             pygame.mixer.music.load('Resursi\Zvučni efekti\game over.mp3')
         pygame.mixer.music.play()
+
         if brojač_pogodaka<=40:
             print('Ukupan broj pogodaka: {} ... Jadno!' .format(brojač_pogodaka))
         if brojač_pogodaka>40 and brojač_pogodaka<=50:
@@ -190,6 +256,7 @@ class igrač(object):
             print('Ukupan broj pogodaka: {} ... Opa!' .format(brojač_pogodaka))
         if brojač_pogodaka>80:
             print('Ukupan broj pogodaka: {} ... To legendo!' .format(brojač_pogodaka))
+
         pygame.time.delay(3050)
         pygame.quit()
                
@@ -201,6 +268,7 @@ class projektil(object):  #metci
         self.boja=boja
         self.smjer=smjer
         self.vel=12*smjer
+
     def crtaj(self,win):
         win.blit(bullet,(self.x,self.y))
 
@@ -209,14 +277,17 @@ def crtanje():  #crtanje objekata
     win.blit(pozadina,(move_x,0))#pozadina
     Mario.crtaj(win)
     neprijatelj.crtaj(win)
+    riba.crtaj(win)
     for metak in municija:
         metak.crtaj(win)
     pygame.display.update()
 
 Mario=igrač(800,435,35,35)
-neprijatelj=gljiva(0,453,32,32,960-40)
+neprijatelj=gljiva(0,452,32,32,920)
+riba=riba(-500,220,32,32,1420)
 municija=[]
 shootLoop=1
+
 # glavna petlja
 while run:  
 
@@ -225,7 +296,11 @@ while run:
     if Mario.hitbox[1]<neprijatelj.hitbox[1]+neprijatelj.hitbox[3] and Mario.hitbox[1]+Mario.hitbox[3]>neprijatelj.hitbox[1]: #sudar
         if Mario.hitbox[0]+Mario.hitbox[2]>neprijatelj.hitbox[0] and Mario.hitbox[0]<neprijatelj.hitbox[0]+neprijatelj.hitbox[2]:
             Mario.hit()
-    if shootLoop>0:
+    if Mario.hitbox[1]<riba.hitbox[1]+riba.hitbox[3] and Mario.hitbox[1]+Mario.hitbox[3]>riba.hitbox[1]:
+        if Mario.hitbox[0]+Mario.hitbox[2]>riba.hitbox[0] and Mario.hitbox[0]<riba.hitbox[0]+riba.hitbox[2]:
+            Mario.hit()
+
+    if shootLoop>0: #ograničavanje pucanja
         shootLoop+=1
     if shootLoop>1:
         shootLoop=0
@@ -307,16 +382,11 @@ while run:
         else:
             Mario.skok=False
             Mario.bojač_skoka=16
-
-    if Mario.hitbox[1]+Mario.hitbox[3]<neprijatelj.hitbox[1]+neprijatelj.hitbox[3] and Mario.hitbox[1]>neprijatelj.hitbox[1]:
-            if Mario.hitbox[0]>neprijatelj.hitbox[0] and Mario.hitbox[0]+Mario.hitbox[2]<neprijatelj.hitbox[0]+neprijatelj.hitbox[2]:
-                run=False
-
+    
     crtanje()
-  
     text = font.render('Broj pogodaka : {}'.format(brojač_pogodaka), True, (255,0,0))
     win.blit(text,(7,8))
-
+    
     pygame.display.update() #konstantno osvježavanje prozora
 
 pygame.quit() #kraj programa
