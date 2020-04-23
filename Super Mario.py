@@ -208,7 +208,7 @@ class igrač(object):
         self.hitbox=(self.x-5,self.y-5,60,65)
 
     def crtaj(self,win):
-        if self.brojač_hoda+1>=40:
+        if self.brojač_hoda>=40:
             self.brojač_hoda=0
 
         if not self.skok:
@@ -335,6 +335,10 @@ while run:
                 neprijatelj.vel-=4
             else:
                 neprijatelj.vel+=4
+            if riba.vel<0:
+                riba.vel-=3
+            else:
+                riba.vel+=3
             
     if tipka[pygame.K_SPACE] and shootLoop==0: # pucanje
         
