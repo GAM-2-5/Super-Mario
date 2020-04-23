@@ -11,6 +11,7 @@ pygame.display.set_icon(a)
 pygame.display.set_caption('Super Mario')
 pygame.mixer.init() #zvučni efekti
 font=pygame.font.Font('Resursi\SuperMario256.ttf',25)
+
 try:
     pygame.mixer.music.load('Custom\Mario song.mp3')
 except:
@@ -35,6 +36,7 @@ pygame.time.set_timer(TIMER_EVENT1,20000)
 
 dužina_slike=50 # sprite-ovi
 visina_slike=58
+
 try:
     bullet=pygame.image.load('Custom\metak.png')
 except:
@@ -105,7 +107,7 @@ class riba(object):
         self.height=height
         self.put=[x,kraj]
         self.brojač_hoda=0
-        self.vel=6
+        self.vel=7
         self.hitbox=(self.x-5,self.y,55,45)
 
     def crtaj(self,win):
@@ -238,7 +240,7 @@ class igrač(object):
             win.blit(riba.riba_desno[1],(riba.x,riba.y))
         else:
             win.blit(riba.riba_lijevo[1],(riba.x,riba.y))
-        win.blit(fail,(self.x,self.y-3))
+        win.blit(fail,(self.x,self.y-5))
         pygame.display.update()
 
         try:
@@ -247,16 +249,16 @@ class igrač(object):
             pygame.mixer.music.load('Resursi\Zvučni efekti\game over.mp3')
         pygame.mixer.music.play()
 
-        if brojač_pogodaka<=40:
-            print('Ukupan broj pogodaka: {} ... Jadno!' .format(brojač_pogodaka))
+        if brojač_pogodaka<=20:
+            print('Ukupan broj bodova: {} ... Jadno!' .format(brojač_pogodaka))
+        if brojač_pogodaka>20 and brojač_pogodaka<=30:
+            print('Ukupan broj bodova: {} ... Meh!' .format(brojač_pogodaka))
+        if brojač_pogodaka>30 and brojač_pogodaka<=40:
+            print('Ukupan broj bodova: {} ... Nije loše!' .format(brojač_pogodaka))
         if brojač_pogodaka>40 and brojač_pogodaka<=50:
-            print('Ukupan broj pogodaka: {} ... Meh!' .format(brojač_pogodaka))
-        if brojač_pogodaka>50 and brojač_pogodaka<=60:
-            print('Ukupan broj pogodaka: {} ... Nije loše!' .format(brojač_pogodaka))
-        if brojač_pogodaka>60 and brojač_pogodaka<=80:
-            print('Ukupan broj pogodaka: {} ... Opa!' .format(brojač_pogodaka))
-        if brojač_pogodaka>80:
-            print('Ukupan broj pogodaka: {} ... To legendo!' .format(brojač_pogodaka))
+            print('Ukupan broj bodova: {} ... Opa!' .format(brojač_pogodaka))
+        if brojač_pogodaka>60:
+            print('Ukupan broj bodova: {} ... To legendo!' .format(brojač_pogodaka))
 
         pygame.time.delay(3050)
         pygame.quit()
@@ -307,10 +309,17 @@ while run:
         shootLoop=0
     
     for metak in municija: # pucanje
-        if metak.y-metak.radius<neprijatelj.hitbox[1]+neprijatelj.hitbox[3] and metak.y+metak.radius>neprijatelj.hitbox[1]:
+
+        if metak.y-metak.radius<neprijatelj.hitbox[1]+neprijatelj.hitbox[3] and metak.y+metak.radius>neprijatelj.hitbox[1]: #pogodak
             if metak.x+metak.radius>neprijatelj.hitbox[0] and metak.x-metak.radius<neprijatelj.hitbox[0]+neprijatelj.hitbox[2]:
                 brojač_pogodaka+=1
                 municija.pop(municija.index(metak))
+
+        if metak.y-metak.radius<riba.hitbox[1]+riba.hitbox[3] and metak.y+metak.radius>riba.hitbox[1]: #pogodak
+            if metak.x+metak.radius>riba.hitbox[0] and metak.x-metak.radius<riba.hitbox[0]+riba.hitbox[2]:
+                brojač_pogodaka+=5
+                municija.pop(municija.index(metak))
+
         if metak.x<960 and metak.x>0:
             metak.x+=metak.vel
         else:
@@ -326,10 +335,6 @@ while run:
                 neprijatelj.vel-=4
             else:
                 neprijatelj.vel+=4
-            if riba.vel<0:
-                riba.vel-=4
-            else:
-                riba.vel+=4
             
     if tipka[pygame.K_SPACE] and shootLoop==0: # pucanje
         
@@ -389,7 +394,7 @@ while run:
             Mario.bojač_skoka=16
     
     crtanje()
-    text = font.render('Broj pogodaka : {}'.format(brojač_pogodaka), True, (255,0,0))
+    text = font.render('Broj bodova : {}'.format(brojač_pogodaka), True, (255,0,0))
     win.blit(text,(7,8))
     
     pygame.display.update() #konstantno osvježavanje prozora
