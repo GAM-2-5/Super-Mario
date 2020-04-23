@@ -22,7 +22,6 @@ else:
   x='Resursi\Opening.mp4'
 
 cap=cv2.VideoCapture(x)
-x=cap.get(cv2.CAP_PROP_FPS)
 
 while(cap.isOpened()):#puštanje videozapisa
 
@@ -30,7 +29,7 @@ while(cap.isOpened()):#puštanje videozapisa
 
   if ret == True: #zaustavljanje
     cv2.imshow('Super Mario Opening',frame)
-    if cv2.waitKey(int(round((1/x)*1000,0))-11) & 0xFF == ord('q'):
+    if cv2.waitKey(22) & 0xFF == ord('q'):
       pg.mixer.music.pause()
       break
   else: 
