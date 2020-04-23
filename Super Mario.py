@@ -3,7 +3,7 @@ import Videoplayer
 
 pygame.init()
 
-win=pygame.display.set_mode((960,540),pygame.RESIZABLE)#dimenzije prozora
+win=pygame.display.set_mode((960,540),pygame.RESIZABLE) #dimenzije prozora
 zaslon_dužina=960
 zaslon_visina=540
 a=pygame.image.load('Resursi\mario ikona.png')
@@ -208,16 +208,16 @@ class igrač(object):
         self.hitbox=(self.x-5,self.y-5,60,65)
 
     def crtaj(self,win):
-        if self.brojač_hoda+1>=60:
+        if self.brojač_hoda+1>=40:
             self.brojač_hoda=0
 
         if not self.skok:
             if not self.stajanje: # hodanje
                 if self.lijevo:
-                    win.blit(lijevi_hod[self.brojač_hoda//15],(self.x,self.y))
+                    win.blit(lijevi_hod[self.brojač_hoda//10],(self.x,self.y))
                     self.brojač_hoda+=1
                 elif self.desno:
-                    win.blit(desni_hod[self.brojač_hoda//15],(self.x,self.y))
+                    win.blit(desni_hod[self.brojač_hoda//10],(self.x,self.y))
                     self.brojač_hoda+=1
             else:
                 if self.desno:
@@ -287,7 +287,7 @@ def crtanje():  #crtanje objekata
 
 Mario=igrač(800,435,35,35)
 neprijatelj=gljiva(0,452,32,32,920)
-riba=riba(-1500,220,32,32,2420)
+riba=riba(-2750,220,32,32,2670)
 municija=[]
 shootLoop=1
 
