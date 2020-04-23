@@ -95,8 +95,8 @@ class riba(object):
         riba_lijevo=[pygame.image.load('Resursi\Sprites/riba 1.png'),pygame.image.load('Resursi\Sprites/riba 2.png')]
     
     for j in range (len(riba_desno)):
-        riba_desno[j]=pygame.transform.scale(riba_desno[j],(41,44))
-        riba_lijevo[j]=pygame.transform.scale(riba_lijevo[j],(41,44))
+        riba_desno[j]=pygame.transform.scale(riba_desno[j],(43,44))
+        riba_lijevo[j]=pygame.transform.scale(riba_lijevo[j],(43,44))
 
     def __init__(self,x,y,width,height,kraj):
         self.x=x
@@ -110,16 +110,17 @@ class riba(object):
 
     def crtaj(self,win):
         self.move()
-        if self.brojač_hoda+1>=36:
+        if self.brojač_hoda+1>=24:
             self.brojač_hoda=0
             
         if self.vel>0:
-            win.blit(self.riba_desno[self.brojač_hoda//18],(self.x,self.y))
+            win.blit(self.riba_desno[self.brojač_hoda//12],(self.x,self.y))
             self.brojač_hoda+=1
         else:
-            win.blit(self.riba_lijevo[self.brojač_hoda//18],(self.x,self.y))
+            win.blit(self.riba_lijevo[self.brojač_hoda//12],(self.x,self.y))
             self.brojač_hoda+=1
-        self.hitbox=(self.x+2,self.y+2,40,40)
+
+        self.hitbox=(self.x+4,self.y+4,42,42)
         #pygame.draw.rect(win,(255,0,0),self.hitbox,2)
 
     def move(self):
@@ -284,7 +285,7 @@ def crtanje():  #crtanje objekata
 
 Mario=igrač(800,435,35,35)
 neprijatelj=gljiva(0,452,32,32,920)
-riba=riba(-500,220,32,32,1420)
+riba=riba(-1500,220,32,32,2420)
 municija=[]
 shootLoop=1
 
@@ -325,6 +326,10 @@ while run:
                 neprijatelj.vel-=4
             else:
                 neprijatelj.vel+=4
+            if riba.vel<0:
+                riba.vel-=4
+            else:
+                riba.vel+=4
             
     if tipka[pygame.K_SPACE] and shootLoop==0: # pucanje
         
