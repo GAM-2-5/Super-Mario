@@ -44,24 +44,27 @@ except:
 bullet=pygame.transform.rotozoom(bullet,-90,1)
 
 try:
-    skok_desno=pygame.image.load('Custom\mario skače desno.png')
-    skok_lijevo=pygame.image.load('Custom\mario skače lijevo.png')
+    skok_desno=pygame.image.load('Custom\mario.png')
+    skok_lijevo=pygame.image.load('Custom\mario.png')
 except:
     skok_desno=pygame.image.load('Resursi\Sprites\mario skače desno.png')
     skok_lijevo=pygame.image.load('Resursi\Sprites\mario skače lijevo.png')
 
 try:
     desni_hod=[pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png')] 
-    lijevi_hod=[pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png')] 
+    lijevi_hod=[pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png'),pygame.image.load('Custom\mario.png')]
     idle=pygame.image.load('Custom\mario.png')
     fail=pygame.image.load('Custom\mario.png')
-    riba_desno=pygame.image.load('Custom\riba.png')
-    riba_lijevo=pygame.image.load('Custom\riba.png')
 except:
     desni_hod=[pygame.image.load('Resursi\Sprites\mario 1.png'),pygame.image.load('Resursi\Sprites\mario 2.png'),pygame.image.load('Resursi\Sprites\mario 3.png'),pygame.image.load('Resursi\Sprites\mario 4.png')] 
     lijevi_hod=[pygame.image.load('Resursi\Sprites\mario 1 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 2 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 3 obrnuti.png'),pygame.image.load('Resursi\Sprites\mario 4 obrnuti.png')]
     idle=pygame.image.load('Resursi\Sprites\mario 1.png')
     fail=pygame.image.load('Resursi\Sprites\mario fail.png')
+
+try:
+    riba_desno=pygame.image.load('Custom\riba.png')
+    riba_lijevo=pygame.image.load('Custom\riba.png')
+except:
     riba_desno=[pygame.image.load('Resursi\Sprites/riba 1 obrnuta.png'),pygame.image.load('Resursi\Sprites/riba 2 obrnuta.png')]
     riba_lijevo=[pygame.image.load('Resursi\Sprites/riba 1.png'),pygame.image.load('Resursi\Sprites/riba 2.png')]
 
@@ -169,7 +172,7 @@ class gljiva(object):
         if self.vel>0:
             win.blit(self.gljiva_hod[self.brojač_hoda//45],(self.x,self.y))
             self.brojač_hoda+=1
-        else:
+        if self.vel<0:
             win.blit(self.gljiva_hod[self.brojač_hoda//45],(self.x,self.y))
             self.brojač_hoda+=1
         self.hitbox=(self.x+2,self.y+2,38,40)
@@ -240,7 +243,7 @@ class igrač(object):
             win.blit(riba.riba_desno[1],(riba.x,riba.y))
         else:
             win.blit(riba.riba_lijevo[1],(riba.x,riba.y))
-        win.blit(fail,(self.x,self.y-5))
+        win.blit(fail,(self.x,self.y-4))
         pygame.display.update()
 
         try:
@@ -253,16 +256,16 @@ class igrač(object):
             print('Ukupan broj bodova: {} ... Jadno!' .format(brojač_pogodaka))
         if brojač_pogodaka>20 and brojač_pogodaka<=30:
             print('Ukupan broj bodova: {} ... Meh!' .format(brojač_pogodaka))
-        if brojač_pogodaka>30 and brojač_pogodaka<=40:
+        if brojač_pogodaka>30 and brojač_pogodaka<=45:
             print('Ukupan broj bodova: {} ... Nije loše!' .format(brojač_pogodaka))
-        if brojač_pogodaka>40 and brojač_pogodaka<=55:
+        if brojač_pogodaka>45 and brojač_pogodaka<=60:
             print('Ukupan broj bodova: {} ... Opa!' .format(brojač_pogodaka))
-        if brojač_pogodaka>55:
+        if brojač_pogodaka>60:
             print('Ukupan broj bodova: {} ... To legendo!' .format(brojač_pogodaka))
 
-        pygame.time.delay(3050)
+        pygame.time.delay(3000)
         pygame.quit()
-               
+
 class projektil(object):  #metci
     def __init__(self,x,y,radius,boja,smjer):
         self.x=x
@@ -287,7 +290,7 @@ def crtanje():  #crtanje objekata
 
 Mario=igrač(800,435,35,35)
 neprijatelj=gljiva(0,452,32,32,920)
-riba=riba(-2450,220,32,32,2470)
+riba=riba(-2550,220,32,32,2470)
 municija=[]
 shootLoop=1
 
@@ -328,14 +331,14 @@ while run:
     tipka=pygame.key.get_pressed() #kontrole
 
     for event in pygame.event.get(): #zatvaranje prozora
-        if event.type==pygame.QUIT or tipka[pygame.K_ESCAPE]:
+        if event.type==pygame.QUIT or tipka[pygame.K_q]:
             run=False
         if event.type==TIMER_EVENT:
             if neprijatelj.vel<0:
                 neprijatelj.vel-=4
             else:
                 neprijatelj.vel+=4
-            
+
     if tipka[pygame.K_SPACE] and shootLoop==0: # pucanje
         
         if Mario.lijevo:
