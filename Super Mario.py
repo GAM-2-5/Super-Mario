@@ -158,7 +158,7 @@ class gljiva(object):
         self.height=height
         self.put=[x,kraj]
         self.brojač_hoda=0
-        self.vel=4
+        self.vel=5
         self.hitbox=(self.x-5,self.y,55,45)
 
     def crtaj(self,win):
@@ -255,9 +255,9 @@ class igrač(object):
             print('Ukupan broj bodova: {} ... Meh!' .format(brojač_pogodaka))
         if brojač_pogodaka>30 and brojač_pogodaka<=40:
             print('Ukupan broj bodova: {} ... Nije loše!' .format(brojač_pogodaka))
-        if brojač_pogodaka>40 and brojač_pogodaka<=50:
+        if brojač_pogodaka>40 and brojač_pogodaka<=55:
             print('Ukupan broj bodova: {} ... Opa!' .format(brojač_pogodaka))
-        if brojač_pogodaka>60:
+        if brojač_pogodaka>55:
             print('Ukupan broj bodova: {} ... To legendo!' .format(brojač_pogodaka))
 
         pygame.time.delay(3050)
@@ -287,7 +287,7 @@ def crtanje():  #crtanje objekata
 
 Mario=igrač(800,435,35,35)
 neprijatelj=gljiva(0,452,32,32,920)
-riba=riba(-2750,220,32,32,2670)
+riba=riba(-2450,220,32,32,2470)
 municija=[]
 shootLoop=1
 
@@ -335,10 +335,6 @@ while run:
                 neprijatelj.vel-=4
             else:
                 neprijatelj.vel+=4
-            if riba.vel<0:
-                riba.vel-=3
-            else:
-                riba.vel+=3
             
     if tipka[pygame.K_SPACE] and shootLoop==0: # pucanje
         
