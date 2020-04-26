@@ -8,9 +8,9 @@ zaslon_dužina=960
 zaslon_visina=540
 a=pygame.image.load('Resursi\mario ikona.png')
 pygame.display.set_icon(a)
-pygame.display.set_caption('Super Mario')
-pygame.mixer.init() #zvučni efekti
+pygame.display.set_caption('Super Mario | Python')
 font=pygame.font.Font('Resursi\SuperMario256.ttf',25)
+pygame.mixer.init() #zvučni efekti
 
 try:
     pygame.mixer.music.load('Custom\Mario song.mp3')
@@ -85,6 +85,7 @@ except:
 move_x=0
 
 brojač_pogodaka=0
+
 
 clock=pygame.time.Clock()
 
@@ -172,7 +173,7 @@ class gljiva(object):
         if self.vel>0:
             win.blit(self.gljiva_hod[self.brojač_hoda//45],(self.x,self.y))
             self.brojač_hoda+=1
-        if self.vel<0:
+        else:
             win.blit(self.gljiva_hod[self.brojač_hoda//45],(self.x,self.y))
             self.brojač_hoda+=1
         self.hitbox=(self.x+2,self.y+2,38,40)
@@ -237,14 +238,14 @@ class igrač(object):
         #pygame.draw.rect(win,(0,0,255),self.hitbox,2)
 
     def hit(self): #u slučaju sudara
+        font=pygame.font.Font('Resursi\SuperMario256.ttf',30)
         win.blit(pozadina,(move_x,0))
         win.blit(neprijatelj.gljiva_hod[1],(neprijatelj.x,neprijatelj.y))
         if riba.vel>0:
             win.blit(riba.riba_desno[1],(riba.x,riba.y))
         else:
             win.blit(riba.riba_lijevo[1],(riba.x,riba.y))
-        win.blit(fail,(self.x,self.y-4))
-        pygame.display.update()
+        win.blit(fail,(self.x,self.y-2))       
 
         try:
             pygame.mixer.music.load('Custom\game over.mp3')
@@ -253,18 +254,21 @@ class igrač(object):
         pygame.mixer.music.play()
 
         if brojač_pogodaka<=20:
-            print('Ukupan broj bodova: {} ... Jadno!' .format(brojač_pogodaka))
+            text = font.render('Ukupan broj bodova : {} ... Jadno!'.format(brojač_pogodaka), True, (255,0,0))
         if brojač_pogodaka>20 and brojač_pogodaka<=30:
-            print('Ukupan broj bodova: {} ... Meh!' .format(brojač_pogodaka))
+            text = font.render('Ukupan broj bodova : {} ... Meh!' .format(brojač_pogodaka), True, (255,0,0))
         if brojač_pogodaka>30 and brojač_pogodaka<=45:
-            print('Ukupan broj bodova: {} ... Nije loše!' .format(brojač_pogodaka))
+            text = font.render('Ukupan broj bodova : {} ... Nije loše!' .format(brojač_pogodaka), True, (255,0,0))
         if brojač_pogodaka>45 and brojač_pogodaka<=60:
-            print('Ukupan broj bodova: {} ... Opa!' .format(brojač_pogodaka))
+            text = font.render('Ukupan broj bodova : {} ... Opa!' .format(brojač_pogodaka), True, (255,0,0))
         if brojač_pogodaka>60:
-            print('Ukupan broj bodova: {} ... To legendo!' .format(brojač_pogodaka))
+            text = font.render('Ukupan broj bodova : {} ... To legendo!' .format(brojač_pogodaka), True, (255,0,0))
+        win.blit(text,(185,180))
+        pygame.display.update()
 
         pygame.time.delay(3000)
         pygame.quit()
+br=0       
 
 class projektil(object):  #metci
     def __init__(self,x,y,radius,boja,smjer):
@@ -280,10 +284,12 @@ class projektil(object):  #metci
 
 def crtanje():  #crtanje objekata
     global brojač_hoda
+    text = font.render('Broj bodova : {}'.format(brojač_pogodaka), True, (255,0,0))
     win.blit(pozadina,(move_x,0))#pozadina
     Mario.crtaj(win)
     neprijatelj.crtaj(win)
     riba.crtaj(win)
+    win.blit(text,(7,8))
     for metak in municija:
         metak.crtaj(win)
     pygame.display.update()
@@ -395,11 +401,9 @@ while run:
         else:
             Mario.skok=False
             Mario.bojač_skoka=16
-    
+  
     crtanje()
-    text = font.render('Broj bodova : {}'.format(brojač_pogodaka), True, (255,0,0))
-    win.blit(text,(7,8))
     
-    pygame.display.update() #konstantno osvježavanje prozora
+    pygame.display.update() #osvježavanje prozora
 
 pygame.quit() #kraj programa
