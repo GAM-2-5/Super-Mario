@@ -81,9 +81,7 @@ except:
     pozadina=pygame.image.load('Resursi\pozadina.png')
 
 move_x=0
-
 brojač_pogodaka=0
-
 
 clock=pygame.time.Clock()
 
