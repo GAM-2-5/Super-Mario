@@ -31,8 +31,6 @@ except:
 
 TIMER_EVENT=pygame.USEREVENT+1 #ubrzavanje gljive
 pygame.time.set_timer(TIMER_EVENT,10000)
-TIMER_EVENT1=pygame.USEREVENT+2 
-pygame.time.set_timer(TIMER_EVENT1,20000)
 
 dužina_slike=50 # sprite-ovi
 visina_slike=58
@@ -212,16 +210,16 @@ class igrač(object):
         self.hitbox=(self.x-5,self.y-5,60,65)
 
     def crtaj(self,win):
-        if self.brojač_hoda>=40:
+        if self.brojač_hoda>=28:
             self.brojač_hoda=0
 
         if not self.skok:
             if not self.stajanje: # hodanje
                 if self.lijevo:
-                    win.blit(lijevi_hod[self.brojač_hoda//10],(self.x,self.y))
+                    win.blit(lijevi_hod[self.brojač_hoda//7],(self.x,self.y))
                     self.brojač_hoda+=1
                 elif self.desno:
-                    win.blit(desni_hod[self.brojač_hoda//10],(self.x,self.y))
+                    win.blit(desni_hod[self.brojač_hoda//7],(self.x,self.y))
                     self.brojač_hoda+=1
             else:
                 if self.desno:
@@ -258,7 +256,7 @@ class igrač(object):
         if brojač_pogodaka>20 and brojač_pogodaka<=30:
             text = font.render('Ukupan broj bodova : {} ... Meh!' .format(brojač_pogodaka), True, (255,0,0))
         if brojač_pogodaka>30 and brojač_pogodaka<=45:
-            text = font.render('Ukupan broj bodova : {} ... Nije loše!' .format(brojač_pogodaka), True, (255,0,0))
+            text = font.render('Ukupan broj bodova : {} ... Nije lose!' .format(brojač_pogodaka), True, (255,0,0))
         if brojač_pogodaka>45 and brojač_pogodaka<=60:
             text = font.render('Ukupan broj bodova : {} ... Opa!' .format(brojač_pogodaka), True, (255,0,0))
         if brojač_pogodaka>60:
@@ -267,8 +265,7 @@ class igrač(object):
         pygame.display.update()
 
         pygame.time.delay(3000)
-        pygame.quit()
-br=0       
+        pygame.quit()      
 
 class projektil(object):  #metci
     def __init__(self,x,y,radius,boja,smjer):
@@ -344,6 +341,8 @@ while run:
                 neprijatelj.vel-=4
             else:
                 neprijatelj.vel+=4
+            riba.put[0]+=200
+            riba.put[1]-=200
 
     if tipka[pygame.K_SPACE] and shootLoop==0: # pucanje
         

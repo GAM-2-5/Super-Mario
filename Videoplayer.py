@@ -1,5 +1,4 @@
 import cv2 #unošenje potrebnih knjižnica
-import numpy as np
 import pygame as pg
 
 pg.init() #inicijalizacija pygame-a
