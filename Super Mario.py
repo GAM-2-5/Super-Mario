@@ -48,9 +48,11 @@ class riba(object):
             else:
                 win.blit(self.riba_lijevo[self.brojač_hoda//12],(self.x,self.y))
                 self.brojač_hoda+=1
-
-            self.hitbox=(self.x+4,self.y+4,42,42)
-            #pygame.draw.rect(win,(255,0,0),self.hitbox,2)
+            if super_mario:
+                self.hitbox=(self.x+4,self.y+4,42,42)
+            else:
+                self.hitbox=(self.x+7,self.y+4,120,40)
+            pygame.draw.rect(win,(255,0,0),self.hitbox,2)
 
         def move(self):
 
@@ -84,14 +86,23 @@ class gljiva(object):
         self.move()
         if self.brojač_hoda+1>=90:
             self.brojač_hoda=0
-            
-        if self.vel>0:
-            win.blit(self.gljiva_hod[self.brojač_hoda//45],(self.x,self.y))
-            self.brojač_hoda+=1
+        if super_mario:   
+            if self.vel>0:
+                win.blit(self.gljiva_hod[self.brojač_hoda//45],(self.x,self.y))
+                self.brojač_hoda+=1
+            else:
+                win.blit(self.gljiva_hod[self.brojač_hoda//45],(self.x,self.y))
+                self.brojač_hoda+=1
         else:
-            win.blit(self.gljiva_hod[self.brojač_hoda//45],(self.x,self.y))
-            self.brojač_hoda+=1
-        self.hitbox=(self.x+2,self.y+2,38,40)
+            if self.vel>0:
+                win.blit(self.gljiva_hod[1],(self.x,self.y))
+            else:
+                win.blit(self.gljiva_hod[0],(self.x,self.y))
+
+        if super_mario:
+            self.hitbox=(self.x+2,self.y+2,38,40)
+        else:
+            self.hitbox=(self.x+6,self.y+2,40,85)
         #pygame.draw.rect(win,(255,0,0),self.hitbox,2)
 
     def move(self):
@@ -147,9 +158,11 @@ class igrač(object):
                 if Mario.desno:
                     win.blit(skok_desno,(Mario.x,Mario.y))
                 else:
-                    win.blit(skok_lijevo,(Mario.x,Mario.y))
-                    
-        self.hitbox=(self.x+2,self.y,47,62)
+                      win.blit(skok_lijevo,(Mario.x,Mario.y))
+        if super_mario:          
+            self.hitbox=(self.x+2,self.y,47,62)
+        else:
+            self.hitbox=(self.x+2,self.y,42,87)
         #pygame.draw.rect(win,(0,0,255),self.hitbox,2)
 
     def hit(self): #u slučaju sudara
@@ -229,7 +242,7 @@ def crtanje():  #crtanje objekata
 
 Mario=igrač(800,435,35,35)
 neprijatelj=gljiva(0,452,32,32,920)
-riba=riba(-2550,220,32,32,2470)
+riba=riba(-2550,220,32,32,2550)
 municija=[]
 shootLoop=1
 # glavna petlja
