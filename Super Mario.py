@@ -53,7 +53,7 @@ class riba(object):
                 self.hitbox=(self.x+4,self.y+4,42,42)
             else:
                 self.hitbox=(self.x+7,self.y+4,120,40)
-            pygame.draw.rect(win,(255,0,0),self.hitbox,2)
+            #pygame.draw.rect(win,(255,0,0),self.hitbox,2)
 
         def move(self):
 
@@ -171,6 +171,7 @@ class igrač(object):
             font=pygame.font.Font('Resursi/SuperMario256.ttf',32)
         else:
             font=pygame.font.Font('Resursi/HeadlinerNo45.ttf',60)
+        pygame.mixer.pause()
         win.blit(pozadina,(move_x,0))
         win.blit(neprijatelj.gljiva_hod[1],(neprijatelj.x,neprijatelj.y))
         if riba.vel>0:
@@ -185,7 +186,7 @@ class igrač(object):
             if super_mario:
                 pygame.mixer.music.load('Resursi\Zvučni efekti\Mario\game over.mp3')
             else:
-               pygame.mixer.music.load('Resursi\Zvučni efekti\Blitzkrieg/rifle.wav')
+               pygame.mixer.music.load('Resursi\Zvučni efekti\Blitzkrieg/rifle2.wav')
         pygame.mixer.music.play()
 
         if brojač_pogodaka<=20:
@@ -294,6 +295,12 @@ while run:
             riba.put[0]+=200
             riba.put[1]-=200
 
+    if riba.x>-1100 and riba.x<2060:
+        if not super_mario and brojač%2==0:
+            avion=pygame.mixer.Sound('Resursi\Zvučni efekti\Blitzkrieg/avion2.wav')
+            avion.play()
+            brojač+=1
+            
     if tipka[pygame.K_LEFT]:
         font=pygame.font.Font('Resursi\SuperMario256.ttf',25)
         super_mario=True
@@ -512,15 +519,7 @@ while run:
         else:
             Mario.skok=False
             Mario.bojač_skoka=16
-    
-    if riba.x>-1100 and riba.x<2060:
-        if not super_mario and brojač%2==0:
-            avion=pygame.mixer.Sound('Resursi\Zvučni efekti\Blitzkrieg/avion2.wav')
-            avion.play()
-            pygame.mixer.pause()
-            pygame.mixer.unpause()
-            brojač+=1
-            
+       
     crtanje()    
     pygame.display.update() #osvježavanje prozora
 
