@@ -10,6 +10,7 @@ a=pygame.image.load('Resursi\mario ikona.png')
 pygame.display.set_icon(a)
 pygame.display.set_caption('Super Mario | Python')
 pygame.mixer.init() #zvučni efekti
+
 izbornik=pygame.image.load('Resursi\izbornik.png')
 TIMER_EVENT=pygame.USEREVENT+1 #ubrzavanje gljive
 pygame.time.set_timer(TIMER_EVENT,10000)
@@ -190,13 +191,13 @@ class igrač(object):
         if brojač_pogodaka<=20:
             text = font.render('Ukupan broj bodova : {} ... Jadno!'.format(brojač_pogodaka), True, (255,0,0))
         if brojač_pogodaka>20 and brojač_pogodaka<=30:
-            text = font.render('Ukupan broj bodova : {}     Meh!' .format(brojač_pogodaka), True, (255,0,0))
+            text = font.render('Ukupan broj bodova : {}  Meh!' .format(brojač_pogodaka), True, (255,0,0))
         if brojač_pogodaka>30 and brojač_pogodaka<=45:
-            text = font.render('Ukupan broj bodova : {}     Nije lose!' .format(brojač_pogodaka), True, (255,0,0))
+            text = font.render('Ukupan broj bodova : {}  Nije loše!' .format(brojač_pogodaka), True, (255,0,0))
         if brojač_pogodaka>45 and brojač_pogodaka<=60:
-            text = font.render('Ukupan broj bodova : {}     Opa!' .format(brojač_pogodaka), True, (255,0,0))
+            text = font.render('Ukupan broj bodova : {}  Opa!' .format(brojač_pogodaka), True, (255,0,0))
         if brojač_pogodaka>60:
-            text = font.render('Ukupan broj bodova : {}     To legendo!' .format(brojač_pogodaka), True, (255,0,0))
+            text = font.render('Ukupan broj bodova : {}  To legendo!' .format(brojač_pogodaka), True, (255,0,0))
         if super_mario:
             win.blit(text,(160,180))
         else:
@@ -242,9 +243,10 @@ def crtanje():  #crtanje objekata
 
 Mario=igrač(800,435,35,35)
 neprijatelj=gljiva(0,452,32,32,920)
-riba=riba(-2550,220,32,32,2550)
+riba=riba(-3550,220,32,32,3550)
 municija=[]
 shootLoop=1
+brojač=0
 # glavna petlja
 while run:  
 
@@ -511,13 +513,15 @@ while run:
             Mario.skok=False
             Mario.bojač_skoka=16
     
-    if riba.x>-1100 and riba.x<960:
-        if not super_mario:
+    if riba.x>-1100 and riba.x<2060:
+        if not super_mario and brojač%2==0:
             avion=pygame.mixer.Sound('Resursi\Zvučni efekti\Blitzkrieg/avion2.wav')
-            avion.play()   
+            avion.play()
+            pygame.mixer.pause()
+            pygame.mixer.unpause()
+            brojač+=1
             
-    crtanje()
-    
+    crtanje()    
     pygame.display.update() #osvježavanje prozora
 
 pygame.quit() #kraj programa
