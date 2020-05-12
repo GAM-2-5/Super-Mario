@@ -10,8 +10,7 @@ a=pygame.image.load('Resursi\mario ikona.png')
 pygame.display.set_icon(a)
 pygame.display.set_caption('Super Mario | Python')
 pygame.mixer.init() #zvučni efekti
-
-izbornik=pygame.image.load('Resursi\izbornik.png')
+izbornik=pygame.image.load('Resursi\izbornik2.png')
 TIMER_EVENT=pygame.USEREVENT+1 #ubrzavanje gljive
 pygame.time.set_timer(TIMER_EVENT,10000)
 TIMER_EVENT1=pygame.USEREVENT+2
@@ -252,6 +251,7 @@ riba=riba(-3550,220,32,32,3550)
 municija=[]
 shootLoop=1
 brojač=0
+brojač2=0
 # glavna petlja
 while run:  
 
@@ -307,7 +307,8 @@ while run:
             avion.play()
             brojač+=1
            
-    if tipka[pygame.K_LEFT]:
+    if tipka[pygame.K_LEFT] and brojač2==0:
+        brojač2+=1
         font=pygame.font.Font('Resursi\SuperMario256.ttf',25)
         super_mario=True
         try:
@@ -381,7 +382,8 @@ while run:
             pozadina=pygame.image.load('Resursi\pozadina.png')
         pygame.mixer.music.play(loops=-1)
 
-    if tipka[pygame.K_RIGHT]:
+    if tipka[pygame.K_RIGHT] and brojač2==0:
+        brojač2+=1
         dužina_slike=45
         visina_slike=90
         font=pygame.font.Font('Resursi\HeadlinerNo45.ttf',40)
