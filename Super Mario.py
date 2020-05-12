@@ -10,7 +10,7 @@ a=pygame.image.load('Resursi\mario ikona.png')
 pygame.display.set_icon(a)
 pygame.display.set_caption('Super Mario | Python')
 pygame.mixer.init() #zvučni efekti
-izbornik=pygame.image.load('Resursi\izbornik2.png')
+izbornik=pygame.image.load('Resursi\izbornik.png')
 TIMER_EVENT=pygame.USEREVENT+1 #ubrzavanje gljive
 pygame.time.set_timer(TIMER_EVENT,10000)
 TIMER_EVENT1=pygame.USEREVENT+2
