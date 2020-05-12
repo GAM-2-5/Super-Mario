@@ -14,7 +14,8 @@ pygame.mixer.init() #zvučni efekti
 izbornik=pygame.image.load('Resursi\izbornik.png')
 TIMER_EVENT=pygame.USEREVENT+1 #ubrzavanje gljive
 pygame.time.set_timer(TIMER_EVENT,10000)
-
+TIMER_EVENT1=pygame.USEREVENT+2
+pygame.time.set_timer(TIMER_EVENT1,20000)
 dužina_slike=50 # sprite-ovi
 visina_slike=58
 
@@ -52,7 +53,10 @@ class riba(object):
             if super_mario:
                 self.hitbox=(self.x+4,self.y+4,42,42)
             else:
-                self.hitbox=(self.x+7,self.y+4,120,40)
+                if self.vel>0:
+                    self.hitbox=(self.x+7,self.y+4,120,40)
+                else:
+                    self.hitbox=(self.x+1,self.y+4,120,40)
             #pygame.draw.rect(win,(255,0,0),self.hitbox,2)
 
         def move(self):
@@ -294,13 +298,15 @@ while run:
                 neprijatelj.vel+=3
             riba.put[0]+=200
             riba.put[1]-=200
+        if event.type==TIMER_EVENT1:
+            brojač+=1
 
     if riba.x>-1100 and riba.x<2060:
         if not super_mario and brojač%2==0:
             avion=pygame.mixer.Sound('Resursi\Zvučni efekti\Blitzkrieg/avion2.wav')
             avion.play()
             brojač+=1
-            
+           
     if tipka[pygame.K_LEFT]:
         font=pygame.font.Font('Resursi\SuperMario256.ttf',25)
         super_mario=True
