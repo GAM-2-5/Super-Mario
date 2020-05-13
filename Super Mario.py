@@ -250,9 +250,9 @@ riba=riba(-3550,220,32,32,3550)
 municija=[]
 shootLoop=1
 brojač=0
-brojač2=0
+
 if istina:
-    pygame.mixer.music.load('Resursi\idle.mp3')
+    pygame.mixer.music.load('Resursi\Zvučni efekti\menu.mp3')
     pygame.mixer.music.play()
 if not istina:
     pygame.mixer.music.pause()
