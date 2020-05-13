@@ -188,7 +188,7 @@ class igrač(object):
             if super_mario:
                 pygame.mixer.music.load('Resursi\Zvučni efekti\Mario\game over.mp3')
             else:
-               pygame.mixer.music.load('Resursi\Zvučni efekti\Blitzkrieg/rifle2.wav')
+               pygame.mixer.music.load('Resursi\Zvučni efekti\Blitzkrieg/rifle.wav')
         pygame.mixer.music.play()
 
         if brojač_pogodaka<=20:
@@ -250,6 +250,7 @@ riba=riba(-3550,220,32,32,3550)
 municija=[]
 shootLoop=1
 brojač=0
+brojač2=0
 
 if istina:
     pygame.mixer.music.load('Resursi\Zvučni efekti\menu.mp3')
