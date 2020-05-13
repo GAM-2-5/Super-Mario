@@ -308,7 +308,7 @@ while run:
 
     if riba.x>-1100 and riba.x<2060:
         if not super_mario and brojač%2==0:
-            avion=pygame.mixer.Sound('Resursi\Zvučni efekti\Blitzkrieg/avion2.wav')
+            avion=pygame.mixer.Sound('Resursi\Zvučni efekti\Blitzkrieg/avion.wav')
             avion.play()
             brojač+=1
            
