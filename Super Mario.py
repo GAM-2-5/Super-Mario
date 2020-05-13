@@ -17,7 +17,6 @@ TIMER_EVENT1=pygame.USEREVENT+2
 pygame.time.set_timer(TIMER_EVENT1,20000)
 dužina_slike=50 # sprite-ovi
 visina_slike=58
-
 istina=True
 move_x=0
 brojač_pogodaka=0
@@ -193,15 +192,15 @@ class igrač(object):
         pygame.mixer.music.play()
 
         if brojač_pogodaka<=20:
-            text = font.render('Ukupan broj bodova : {} ... Jadno!'.format(brojač_pogodaka), True, (255,0,0))
+            text = font.render('Ukupan broj bodova : {}   Jadno!'.format(brojač_pogodaka), True, (255,0,0))
         if brojač_pogodaka>20 and brojač_pogodaka<=30:
-            text = font.render('Ukupan broj bodova : {}  Meh!' .format(brojač_pogodaka), True, (255,0,0))
+            text = font.render('Ukupan broj bodova : {}   Meh!' .format(brojač_pogodaka), True, (255,0,0))
         if brojač_pogodaka>30 and brojač_pogodaka<=45:
-            text = font.render('Ukupan broj bodova : {}  Nije loše!' .format(brojač_pogodaka), True, (255,0,0))
+            text = font.render('Ukupan broj bodova : {}   Nije loše!' .format(brojač_pogodaka), True, (255,0,0))
         if brojač_pogodaka>45 and brojač_pogodaka<=60:
-            text = font.render('Ukupan broj bodova : {}  Opa!' .format(brojač_pogodaka), True, (255,0,0))
+            text = font.render('Ukupan broj bodova : {}   Opa!' .format(brojač_pogodaka), True, (255,0,0))
         if brojač_pogodaka>60:
-            text = font.render('Ukupan broj bodova : {}  To legendo!' .format(brojač_pogodaka), True, (255,0,0))
+            text = font.render('Ukupan broj bodova : {}   To legendo!' .format(brojač_pogodaka), True, (255,0,0))
         if super_mario:
             win.blit(text,(160,180))
         else:
@@ -252,6 +251,12 @@ municija=[]
 shootLoop=1
 brojač=0
 brojač2=0
+if istina:
+    pygame.mixer.music.load('Resursi\idle.mp3')
+    pygame.mixer.music.play()
+if not istina:
+    pygame.mixer.music.pause()
+    
 # glavna petlja
 while run:  
 
