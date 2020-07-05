@@ -190,17 +190,26 @@ class igrač(object):
             else:
                pygame.mixer.music.load('Resursi\Zvučni efekti\Blitzkrieg/rifle.wav')
         pygame.mixer.music.play()
-
-        if brojač_pogodaka<=20:
-            text = font.render('Ukupan broj bodova : {}   Jadno!'.format(brojač_pogodaka), True, (255,0,0))
-        if brojač_pogodaka>20 and brojač_pogodaka<=30:
-            text = font.render('Ukupan broj bodova : {}   Meh!' .format(brojač_pogodaka), True, (255,0,0))
-        if brojač_pogodaka>30 and brojač_pogodaka<=45:
-            text = font.render('Ukupan broj bodova : {}   Nije loše!' .format(brojač_pogodaka), True, (255,0,0))
-        if brojač_pogodaka>45 and brojač_pogodaka<=60:
-            text = font.render('Ukupan broj bodova : {}   Opa!' .format(brojač_pogodaka), True, (255,0,0))
-        if brojač_pogodaka>60:
-            text = font.render('Ukupan broj bodova : {}   To legendo!' .format(brojač_pogodaka), True, (255,0,0))
+        f=open('Resursi\Rekord.txt','r')
+        x=f.read()
+        f.close()
+        
+        if int(x)>int(brojač_pogodaka):
+            if brojač_pogodaka<=20:
+                text = font.render('Ukupan broj bodova : {}  Jadno!'.format(brojač_pogodaka), True, (255,0,0))
+            if brojač_pogodaka>20 and brojač_pogodaka<=30:
+                text = font.render('Ukupan broj bodova : {}  Meh!' .format(brojač_pogodaka), True, (255,0,0))
+            if brojač_pogodaka>30 and brojač_pogodaka<=45:
+                text = font.render('Ukupan broj bodova : {}  Nije loše!' .format(brojač_pogodaka), True, (255,0,0))
+            if brojač_pogodaka>45 and brojač_pogodaka<=60:
+                text = font.render('Ukupan broj bodova : {}  Opa!' .format(brojač_pogodaka), True, (255,0,0))
+            if brojač_pogodaka>60:
+                text = font.render('Ukupan broj bodova : {}  To legendo!' .format(brojač_pogodaka), True, (255,0,0))
+        else:
+            text = font.render('Ukupan broj bodova : {} Novi rekord!'.format(brojač_pogodaka), True, (255,0,0))
+            f=open('Resursi\Rekord.txt','w')
+            f.write('{}' .format(brojač_pogodaka))
+            f.close()
         if super_mario:
             win.blit(text,(160,180))
         else:
@@ -223,14 +232,13 @@ class projektil(object):  #metci
 
     def crtaj(self,win):
         win.blit(bullet,(self.x,self.y))
-pauza=False
+        
 def crtanje():  #crtanje objekata
     global brojač_hoda
     if istina:
         win.blit(izbornik,(0,0))
         gljiva.vel=0
         Mario.vel=0
-
     else:
         win.blit(pozadina,(0,0))      
         text = font.render('Broj bodova : {}'.format(brojač_pogodaka), True, (255,0,0))
@@ -254,7 +262,7 @@ brojač2=0
 
 if istina:
     pygame.mixer.music.load('Resursi\Zvučni efekti\menu.mp3')
-    pygame.mixer.music.play()
+    pygame.mixer.music.play(loops=-1)
 if not istina:
     pygame.mixer.music.pause()
     
