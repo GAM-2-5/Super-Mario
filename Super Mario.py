@@ -1,4 +1,7 @@
 import pygame
+#import sys
+#sys.path.insert(1, '/path/to/application/app/folder')
+#import file
 bruh=open('Resursi\Rekordi.txt')
 if int(bruh.read())==0:
   import Videoplayer
