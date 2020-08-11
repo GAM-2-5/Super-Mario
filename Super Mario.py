@@ -1,5 +1,9 @@
 import pygame
-import Videoplayer
+bruh=open('Resursi\Rekordi.txt')
+if int(bruh.read())==0:
+  import Videoplayer
+else:
+  fortnite=0
 
 pygame.init()
 
