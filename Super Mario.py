@@ -1,12 +1,11 @@
 import pygame
-#import sys
-#sys.path.insert(1, '/path/to/application/app/folder')
-#import file
-bruh=open('Resursi\Rekordi.txt')
+bruh=open('Resursi\Rekord.txt','r')
 if int(bruh.read())==0:
-  import Videoplayer
+    import Videoplayer
+    import webbrowser
+    webbrowser.open('Upute za korištenje\PRAVILA I KONTROLE.txt')
 else:
-  fortnite=0
+    fortnite=0
 
 pygame.init()
 
@@ -201,7 +200,7 @@ class igrač(object):
         x=f.read()
         f.close()
         
-        if int(x)>int(brojač_pogodaka):
+        if int(x)>int(brojač_pogodaka) or int(x)==0:
             if brojač_pogodaka<=20:
                 text = font.render('Ukupan broj bodova : {}  Jadno!'.format(brojač_pogodaka), True, (255,0,0))
             if brojač_pogodaka>20 and brojač_pogodaka<=30:
