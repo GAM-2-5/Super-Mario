@@ -200,10 +200,7 @@ class igrač(object):
         x=f.read()
         f.close()
         
-        if int(x)>int(brojač_pogodaka) or int(x)==0:
-            if int(x)==0:
-                f.write('{}' .format(brojač_pogodaka))
-                f.close()
+        if int(x)>int(brojač_pogodaka):
             if brojač_pogodaka<=20:
                 text = font.render('Ukupan broj bodova : {}  Jadno!'.format(brojač_pogodaka), True, (255,0,0))
             if brojač_pogodaka>20 and brojač_pogodaka<=30:
