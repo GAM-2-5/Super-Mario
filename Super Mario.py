@@ -1,11 +1,20 @@
 import pygame
-bruh=open('Resursi\Rekord.txt','r')
+import sys
+import pathlib
+folder_path=str(pathlib.Path().absolute())
+resource='\Resursi'
+folder_path_resursi=folder_path+resource
+sys.path.insert(1, folder_path_resursi)
+record='\Rekord.txt'
+record_path=folder_path_resursi+record
+bruh=open(record_path,'r')
 if int(bruh.read())==0:
     import Videoplayer
     import webbrowser
     webbrowser.open('Upute za korištenje\PRAVILA I KONTROLE.txt')
 else:
     fortnite=0
+
 
 pygame.init()
 
@@ -495,7 +504,8 @@ while run:
             municija.append(projektil(round(Mario.x+Mario.width//2),round(Mario.y+Mario.height//2),6,(0,0,0),smjer))
 
     if tipka[pygame.K_m]: # kontrole
-        pygame.mixer.music.pause()
+        #pygame.mixer.music.quit()
+        pygame.mixer.stop()
   
     if tipka[pygame.K_a] and Mario.x>Mario.vel:
         Mario.x-=Mario.vel
