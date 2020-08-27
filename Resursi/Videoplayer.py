@@ -28,7 +28,7 @@ while(cap.isOpened()):#puštanje videozapisa
 
   if ret == True: #zaustavljanje
     cv2.imshow('Super Mario Opening',frame)
-    if cv2.waitKey(4) & 0xFF == ord('q'):
+    if cv2.waitKey(6) & 0xFF == ord('q'):
       pg.mixer.music.pause()
       break
   else: 
