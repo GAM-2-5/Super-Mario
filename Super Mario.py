@@ -1,6 +1,14 @@
-import pygame
 import sys
+import subprocess
+subprocess.check_call([sys.executable, "-m", "pip", "install", "pathlib"])
+subprocess.check_call([sys.executable, "-m", "pip", "install", "pygame"])
+subprocess.check_call([sys.executable, "-m", "pip", "install", "opencv-python"])
+from os import environ
+environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
+import pygame
 import pathlib
+import warnings
+warnings.filterwarnings("ignore")
 
 folder_path=str(pathlib.Path().absolute())
 resource='\Resursi'
@@ -11,8 +19,8 @@ record_path=folder_path_resursi+record
 bruh=open(record_path,'r')
 if int(bruh.read())==0:
     import Videoplayer
-    import webbrowser
-    webbrowser.open('Upute za korištenje\PRAVILA I KONTROLE.txt')
+    #import webbrowser
+    #webbrowser.open('Upute za korištenje\PRAVILA I KONTROLE.txt')
     import os, winshell
     from win32com.client import Dispatch
     desktop = winshell.desktop()
@@ -27,10 +35,10 @@ if int(bruh.read())==0:
     shortcut.IconLocation = icon
     shortcut.save()
 else:
-    fortnite=0
-
+    fortnite=False
 
 pygame.init()
+
 
 win=pygame.display.set_mode((960,540),pygame.RESIZABLE) #dimenzije prozora
 zaslon_dužina=960
@@ -248,6 +256,7 @@ class igrač(object):
             pygame.time.delay(3000)
         else:
             pygame.time.delay(1850)
+        run=False
         pygame.quit()      
 
 class projektil(object):  #metci
