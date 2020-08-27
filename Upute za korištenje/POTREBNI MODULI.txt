@@ -6,4 +6,5 @@ Lijevim klikom kliknite na pravokutnik gdje je prikazan put do te mape i upišit
 Da biste instalirali Pygame upišite 'pip install pygame'. 
 Za instaliravanje NumPy upišite 'pip install numpy'. 
 Za instaliravanje OpenCV upišite 'pip install opencv-python'. 
+Za instaliravanje pathlib upišite 'pip install pathlib'
 Sve ove knjižnice su nužne za uspješan rad igre.
