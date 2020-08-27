@@ -1,6 +1,7 @@
 import pygame
 import sys
 import pathlib
+
 folder_path=str(pathlib.Path().absolute())
 resource='\Resursi'
 folder_path_resursi=folder_path+resource
@@ -12,6 +13,19 @@ if int(bruh.read())==0:
     import Videoplayer
     import webbrowser
     webbrowser.open('Upute za korištenje\PRAVILA I KONTROLE.txt')
+    import os, winshell
+    from win32com.client import Dispatch
+    desktop = winshell.desktop()
+    path = os.path.join(desktop, "Super Mario.lnk")
+    target = r"{}\Super Mario.py".format(pathlib.Path().absolute())
+    wDir = r"{}".format(pathlib.Path().absolute())
+    icon = r"{}\mario python ikona.ico".format(folder_path_resursi)
+    shell = Dispatch('WScript.Shell')
+    shortcut = shell.CreateShortCut(path)
+    shortcut.Targetpath = target
+    shortcut.WorkingDirectory = wDir
+    shortcut.IconLocation = icon
+    shortcut.save()
 else:
     fortnite=0
 
