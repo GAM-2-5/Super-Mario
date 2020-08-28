@@ -1,8 +1,5 @@
 import sys
 import subprocess
-subprocess.check_call([sys.executable, "-m", "pip", "install", "pathlib"])
-subprocess.check_call([sys.executable, "-m", "pip", "install", "pygame"])
-subprocess.check_call([sys.executable, "-m", "pip", "install", "opencv-python"])
 from os import environ
 environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 import pygame
@@ -21,6 +18,11 @@ if int(bruh.read())==0:
     import Videoplayer
     #import webbrowser
     #webbrowser.open('Upute za korištenje\PRAVILA I KONTROLE.txt')
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "pathlib"])
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "pygame"])
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "opencv-python"])
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "pywin32"])
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "winshell"])
     import os, winshell
     from win32com.client import Dispatch
     desktop = winshell.desktop()
@@ -34,8 +36,6 @@ if int(bruh.read())==0:
     shortcut.WorkingDirectory = wDir
     shortcut.IconLocation = icon
     shortcut.save()
-else:
-    fortnite=False
 
 pygame.init()
 
