@@ -15,9 +15,11 @@ record='\Rekord.txt'
 record_path=folder_path_resursi+record
 bruh=open(record_path,'r')
 if int(bruh.read())==0:
+    print('Instalacija modula u tijeku. Pričekajte...')
     import Videoplayer
-    #import webbrowser
-    #webbrowser.open('Upute za korištenje\PRAVILA I KONTROLE.txt')
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "webbrowser"])
+    import webbrowser
+    webbrowser.open('Upute za korištenje\PRAVILA I KONTROLE.txt')
     subprocess.check_call([sys.executable, "-m", "pip", "install", "pathlib"])
     subprocess.check_call([sys.executable, "-m", "pip", "install", "pygame"])
     subprocess.check_call([sys.executable, "-m", "pip", "install", "opencv-python"])
@@ -40,7 +42,8 @@ if int(bruh.read())==0:
 pygame.init()
 
 
-win=pygame.display.set_mode((960,540),pygame.RESIZABLE) #dimenzije prozora
+win=pygame.display.set_mode((960,540),pygame.RESIZABLE)
+#win=pygame.display.set_mode((1920,1080),pygame.FULLSCREEN)#dimenzije prozora
 zaslon_dužina=960
 zaslon_visina=540
 a=pygame.image.load('Resursi\mario ikona.png')
@@ -48,6 +51,7 @@ pygame.display.set_icon(a)
 pygame.display.set_caption('Super Mario | Python')
 pygame.mixer.init() #zvučni efekti
 izbornik=pygame.image.load('Resursi\izbornik.png')
+#izbornik=pygame.transform.scale(izbornik,(1920,1080))
 TIMER_EVENT=pygame.USEREVENT+1 #ubrzavanje gljive
 pygame.time.set_timer(TIMER_EVENT,10000)
 TIMER_EVENT1=pygame.USEREVENT+2
@@ -432,6 +436,7 @@ while run:
             pozadina=pygame.image.load('Custom\pozadina.png')
         except:
             pozadina=pygame.image.load('Resursi\pozadina.png')
+            #pozadina=pygame.transform.scale(pozadina,(1920,1080))
         pygame.mixer.music.play(loops=-1)
 
     if tipka[pygame.K_RIGHT] and brojač2==0:
