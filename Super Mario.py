@@ -14,10 +14,15 @@ sys.path.insert(1, folder_path_resursi)
 record='\Rekord.txt'
 record_path=folder_path_resursi+record
 bruh=open(record_path,'r')
+
 if int(bruh.read())==0:
+    bruh.close()
     print('Instalacija modula u tijeku. Pričekajte...')
     import Videoplayer
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "webbrowser"])
+    try:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "webbrowser"])
+    except:
+        None
     import webbrowser
     webbrowser.open('Upute za korištenje\PRAVILA I KONTROLE.txt')
     subprocess.check_call([sys.executable, "-m", "pip", "install", "pathlib"])
@@ -38,6 +43,9 @@ if int(bruh.read())==0:
     shortcut.WorkingDirectory = wDir
     shortcut.IconLocation = icon
     shortcut.save()
+bruh=open(record_path,'w')
+bruh.write('1')
+bruh.close()
 
 pygame.init()
 
