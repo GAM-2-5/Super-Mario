@@ -4,21 +4,21 @@ import pygame as pg
 pg.init() #inicijalizacija pygame-a
 pg.mixer.init()
 
-win=pg.display.set_mode((1920,1080),pg.RESIZABLE)#izgled prozora
-pg.display.set_caption('Super Mario Opening')
+#win=pg.display.set_mode((1920,1080),pg.RESIZABLE)#izgled prozora
+#pg.display.set_caption('Super Mario Opening')
 #učitavanje podataka
 try:
   pg.mixer.music.load('Custom\Opening.mp3')
 
 except:
-    pg.mixer.music.load('Resursi\Zvučni efekti\Opening.mp3')
+    pg.mixer.music.load('Zvučni efekti\Opening.mp3')
 
 pg.mixer.music.play()
 
 if (cv2.VideoCapture('Custom\Opening.mp4').isOpened())==True:
   x='Custom\Opening.mp4'
 else:
-  x='Resursi\Opening.mp4'
+  x='Opening.mp4'
 
 cap=cv2.VideoCapture(x)
 
@@ -28,7 +28,7 @@ while(cap.isOpened()):#puštanje videozapisa
 
   if ret == True: #zaustavljanje
     cv2.imshow('Super Mario Opening',frame)
-    if cv2.waitKey(6) & 0xFF == ord('q'):
+    if cv2.waitKey(5) & 0xFF == ord('q'):
       pg.mixer.music.pause()
       break
   else: 
